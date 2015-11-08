@@ -6,7 +6,7 @@ package com.example.faraz_khan.bank2;
 public class IRAccount extends BaseAccount {
 
     public IRAccount(String owner, int acc_num, int _id) {
-        super(owner, acc_num, "Current", _id);
+        super(owner, acc_num, "Current", _id, 200, 0.02, 500);
     }
 
 }

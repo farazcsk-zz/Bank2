@@ -3,33 +3,57 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camara"
+            android:id="@+id/create_account"
             android:icon="@android:drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="Create Account" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/deposit"
             android:icon="@android:drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="Deposit" />
         <item
-            android:id="@+id/nav_slideshow"
+            android:id="@+id/display_balance"
             android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:title="Display Balance" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/withdraw"
             android:icon="@android:drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="Withdraw" />
     </group>
 
     <item android:title="Communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/transfer_money"
                 android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="Transfer Money" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/pay_interest"
                 android:icon="@android:drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="Pay Interest" />
+            <item
+                android:id="@+id/add_account_holder"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Add Account Holder" />
+            <item
+                android:id="@+id/show_accounts"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Show Accounts" />
+            <item
+                android:id="@+id/view_transactions"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="View Transactions" />
+            <item
+                android:id="@+id/change_overdraft"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Change Overdraft" />
+            <item
+                android:id="@+id/create_loan"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="Create Loan" />
+            <item
+                android:id="@+id/view_loan_history"
+                android:icon="@android:drawable/ic_menu_send"
+                android:title="View Loan Hisotry" />
         </menu>
     </item>
 

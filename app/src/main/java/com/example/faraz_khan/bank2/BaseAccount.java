@@ -10,17 +10,28 @@ public class BaseAccount implements Account {
 
     public double balance;
     public String account_type;
+    public int overdraft;
+    public int loanAmount;
     protected double interestRate;
     protected int acc_number;
+    protected int overdraftLimit;
+    protected int accNumber;
+    protected int withdrawLimit;
     ArrayList<String> holders = new ArrayList<String>();
     ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    ArrayList<LoanHistory> loanHistory = new ArrayList<>();
     int id;
 
     //Set up a new account
-    public BaseAccount(String acc_owner, int acc_num, String acc_type, int _id) {
+    public BaseAccount(String acc_owner, int acc_num, String acc_type, int _id, int wdLimit, double
+            intRate, int odLimit) {
         holders.add(acc_owner);
         acc_number = acc_num;
         account_type = acc_type;
+        id = _id;
+        withdrawLimit = wdLimit; //id, withdraw limit, interest rate and overdraft limit added to thebase account
+        interestRate = intRate;
+        overdraftLimit = odLimit;
     }
 
     //Add account holder
@@ -29,8 +40,8 @@ public class BaseAccount implements Account {
         acc_number = acc_num;
     }
 
-    public String getHolderName() {
-        return holders.get(0);
+    public ArrayList<String> getHolderName() { //changed to arraylist to show all account holders
+        return holders; //returns all holder names not just the first one
     }
 
     public int getID() {
@@ -57,6 +68,45 @@ public class BaseAccount implements Account {
         return account_type;
     }
 
+    public int getWithdrawLimit() {
+        return withdrawLimit;
+    }
+
+    public int getOverdraft() {
+        return overdraft;
+    }
+
+    public int getOverdraftLimit() {
+        return overdraftLimit;
+    }
+
+    public void changeOverdraft(int limit) {
+        overdraft = limit;
+    }
+
+    public int getLoanAmount() {
+        return loanAmount;
+    }
+
+    public void setLoanAmount(int loan) {
+        loanAmount = loan;
+    }
+
+    public double payInterest() {
+        double charge;
+        if (balance >= 0) {
+            charge = interestRate * balance; //if balance is positive, add interest
+        } else {
+            charge = 0.05 * balance; //if account is in overdraft, interest charged at 5%
+        }
+        balance += charge;
+        return charge;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
 
     public void interest_rate() {
         balance += interestRate * balance;
@@ -69,4 +119,13 @@ public class BaseAccount implements Account {
     public ArrayList<Transaction> getTransactions() {
         return transactions;
     }
+
+    public void addLoanTransaction(Date d, String loanPaymentType, double amount) {
+        loanHistory.add(new LoanHistory(d, loanPaymentType, amount));
+    }
+
+    public ArrayList<LoanHistory> getLoanPayments() {
+        return loanHistory;
+    }
 }
+

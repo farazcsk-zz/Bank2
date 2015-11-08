@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.faraz_khan.bank2.CreateAccount"
+    tools:showIn="@layout/activity_create_account">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="CREATE ACCOUNT" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createCurrentAccount"
+        android:text="New Current Account"
+
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createSavingsAccount"
+        android:text="New Savings Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createStudentAccount"
+        android:text="New Student Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createBusinessAccount"
+        android:text="New Business Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createSMBAccount"
+        android:text="New SMB Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createIRAAccount"
+        android:text="New IRA Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createInternationalAccount"
+        android:text="New International Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createPrivateAccount"
+        android:text="New Private Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createDisabilityAccount"
+        android:text="New Disability Account" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createChildrensAccount"
+        android:text="New Childrens Account" />
+</LinearLayout>

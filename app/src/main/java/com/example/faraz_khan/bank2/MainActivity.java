@@ -1,5 +1,6 @@
 package com.example.faraz_khan.bank2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -80,17 +81,53 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
+        if (id == R.id.create_account) {
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+            Intent CreateAccount = new Intent(this, com.example.faraz_khan.bank2.CreateAccount.class);
+            startActivity(CreateAccount);
+        } else if (id == R.id.deposit) {
+            Intent Deposit = new Intent(this, com.example.faraz_khan.bank2.Deposit.class);
+            startActivity(Deposit);
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.display_balance) {
+            Intent DisplayBalance = new Intent(this, com.example.faraz_khan.bank2.DisplayBalance.class);
+            startActivity(DisplayBalance);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.withdraw) {
+            Intent Withdraw = new Intent(this, com.example.faraz_khan.bank2.Withdraw.class);
+            startActivity(Withdraw);
 
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.transfer_money) {
+            Intent TransferMoney = new Intent(this, com.example.faraz_khan.bank2.TransferMoney.class);
+            startActivity(TransferMoney);
 
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.pay_interest) {
+            Intent PayInterest = new Intent(this, com.example.faraz_khan.bank2.PayInterest.class);
+            startActivity(PayInterest);
+
+        } else if (id == R.id.add_account_holder) {
+            Intent AddAccountHolder = new Intent(this, com.example.faraz_khan.bank2.AddAccountHolder.class);
+            startActivity(AddAccountHolder);
+
+        } else if (id == R.id.show_accounts) {
+            Intent ShowAccounts = new Intent(this, com.example.faraz_khan.bank2.ShowAccounts.class);
+            startActivity(ShowAccounts);
+
+        } else if (id == R.id.view_transactions) {
+            Intent ViewTransactions = new Intent(this, com.example.faraz_khan.bank2.ViewTransactions.class);
+            startActivity(ViewTransactions);
+
+        } else if (id == R.id.change_overdraft) {
+            Intent ChangeOverdraft = new Intent(this, com.example.faraz_khan.bank2.ChangeOverdraft.class);
+            startActivity(ChangeOverdraft);
+
+        } else if (id == R.id.create_loan) {
+            Intent CreateLoan = new Intent(this, com.example.faraz_khan.bank2.CreateLoan.class);
+            startActivity(CreateLoan);
+
+        } else if (id == R.id.view_loan_history) {
+            Intent ViewLoanHistory = new Intent(this, com.example.faraz_khan.bank2.ViewLoanHistory.class);
+            startActivity(ViewLoanHistory);
 
         }
 

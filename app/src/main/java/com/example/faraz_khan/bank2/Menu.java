@@ -7,25 +7,46 @@ package com.example.faraz_khan.bank2;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class Menu {
 
-
     private static Scanner input = new Scanner(System.in);
+    private final Timer timer = new Timer();
     private ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
     private int acc_num;
     private int acc_number;
+    private int accNumGenerator;
     private double amount;
     private String name;
 
     public Menu() {
+        accounts.add(new FeesInterestAccount("Fees and Interest", accNumGenerator, 0));//initialiseaccount for interest and penalties
+        /***4. Interest payments***/
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                for (int i = 0; i < accounts.size(); i++) {
+                    double charge = accounts.get(i).payInterest();
+                    accounts.get(0).withdraw(charge);
+                    accounts.get(i).addTransaction(new Date(), "Interest", (charge));
+                }
+                System.out.println("Interest has been paid.");
+            }
+        }, 30000, 30000);
+
+
+
         main_menu();
     }
 
+    @SuppressWarnings("InfiniteRecursion")
     public void main_menu() {
         //TODO code commented out so it would run in eclipse
         System.out.println("Press Esc to enter menu");
+        int counter = 0; //initialized variable to count if a valid account is found
         try {
             System.in.read();
         } catch (Exception e) {
@@ -41,6 +62,9 @@ public class Menu {
         System.out.println("7. Add Account Holder\r\n");
         System.out.println("8. Show all accounts Held by a customer\r\n");
         System.out.println("9. View Transactions\r\n");
+        System.out.println("10. Change overdraft amount");
+        System.out.println("11. Create Loan");
+        System.out.println("12. View Loan Payment History");
         System.out.println("Select option: ");
 
         int option = Integer.parseInt(input.nextLine());
@@ -53,12 +77,16 @@ public class Menu {
                 System.out.println("4. Business Account\r\n");
                 System.out.println("5. SMB Account\r\n");
                 System.out.println("6. IR Account\r\n");
+                System.out.println("7. High Interest Account");
+                System.out.println("8. Islamic Account");
+                System.out.println("9. Private Account");
+                System.out.println("10. LCR Account");
                 int option2 = Integer.parseInt(input.nextLine());
                 System.out.println("Enter Customer first and Last Name");
                 name = input.nextLine();
                 System.out.println("Enter Customer ID");
                 int id = Integer.parseInt(input.nextLine());
-                acc_num++;
+                accNumGenerator++;
                 switch (option2) {
                     case 1:
                         accounts.add(new CurrentAccount(name, acc_num, id));
@@ -77,6 +105,18 @@ public class Menu {
                         break;
                     case 6:
                         accounts.add(new IRAccount(name, acc_num, id));
+                        break;
+                    case 7:
+                        accounts.add(new HighInterestAccount(name, accNumGenerator, id));
+                        break;
+                    case 8:
+                        accounts.add(new IslamicAccount(name, accNumGenerator, id));
+                        break;
+                    case 9:
+                        accounts.add(new PrivateAccount(name, accNumGenerator, id));
+                        break;
+                    case 10:
+                        accounts.add(new LCRAccount(name, accNumGenerator, id));
                         break;
                 }
 
