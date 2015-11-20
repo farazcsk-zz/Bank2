@@ -15,16 +15,19 @@
 
 
     <EditText
+        android:id="@+id/first_name_4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer First Name" />
 
     <EditText
+        android:id="@+id/surname_4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer Surname" />
 
     <EditText
+        android:id="@+id/ID_4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer ID" />
@@ -32,6 +35,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="cSMBAccount"
         android:text="ENTER" />
 
+    <TextView
+        android:id="@+id/smb_account_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 </LinearLayout>

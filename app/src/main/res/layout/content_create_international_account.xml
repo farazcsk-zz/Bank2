@@ -14,16 +14,19 @@
     tools:showIn="@layout/activity_create_international_account">
 
     <EditText
+        android:id="@+id/first_name_6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer First Name" />
 
     <EditText
+        android:id="@+id/surname_6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer Surname" />
 
     <EditText
+        android:id="@+id/ID_6"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer ID" />
@@ -32,6 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/international_account_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 
 </LinearLayout>

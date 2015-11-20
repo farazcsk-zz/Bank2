@@ -10,6 +10,7 @@ import android.view.View;
 
 public class CreateAccount extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +22,7 @@ public class CreateAccount extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Press Back To Return To Menu", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Press Back To Return To Control", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });

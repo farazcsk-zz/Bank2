@@ -5,7 +5,7 @@ package com.example.faraz_khan.bank2;
  */
 public class bankingsystem {
     public static void main(String[] args) {
-        new com.example.faraz_khan.bank2.Menu();
+        new Control();
 
     }
 }
