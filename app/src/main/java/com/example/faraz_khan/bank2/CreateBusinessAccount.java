@@ -9,15 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class CreateBusinessAccount extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
     public double amount;
     public String name;
-    public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
-
+    //public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
+    Control ctrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,7 @@ public class CreateBusinessAccount extends AppCompatActivity {
 
 
     public void cBAccount(View view) {
+        ctrl = Control.getInstance();
         EditText customer_first_name = (EditText) findViewById(R.id.first_name_3);
         EditText customer_surname = (EditText) findViewById(R.id.surname_3);
 
@@ -50,8 +49,8 @@ public class CreateBusinessAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
-
-        accounts.add(new BusinessAccount(name, acc_num, id));
+        ctrl.createAccount(4, name, acc_num, id);
+        //accounts.add(new BusinessAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.business_account_output);
         output.setText(createSummary(name, acc_num, id));

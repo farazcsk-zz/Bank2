@@ -6,9 +6,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class DisplayBalance extends AppCompatActivity {
-
+    int acc_number;
+    double balance;
+    Control ctrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,31 @@ public class DisplayBalance extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    public void displayBalanceButton(View view) {
+        ctrl = Control.getInstance();
+
+        EditText account_number = (EditText) findViewById(R.id.acc_num_1);
+
+
+        acc_number = Integer.parseInt(account_number.getText().toString());
+        balance = ctrl.displayBalance(acc_number);
+
+
+        TextView output = (TextView) findViewById(R.id.display_balance_output);
+        output.setText(createSummary(acc_number, balance));
+
+
+    }
+
+    public String createSummary(int acc_number, double balance) {
+        String message = "Your Current Balance is: ";
+        message += "\nAmount: " + balance;
+        message += "\nAccount Number: " + acc_number;
+
+
+        return message;
     }
 
 }

@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class CreateIRAAccount extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
     public double amount;
     public String name;
-    public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
+    Control ctrl;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,7 @@ public class CreateIRAAccount extends AppCompatActivity {
     }
 
     public void cIRAAccount(View view) {
+        ctrl = Control.getInstance();
         EditText customer_first_name = (EditText) findViewById(R.id.first_name_5);
         EditText customer_surname = (EditText) findViewById(R.id.surname_5);
 
@@ -48,8 +48,8 @@ public class CreateIRAAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
+        ctrl.createAccount(6, name, acc_num, id);
 
-        accounts.add(new IRAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.ira_account_output);
         output.setText(createSummary(name, acc_num, id));

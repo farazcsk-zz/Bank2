@@ -9,14 +9,13 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
 public class CreateStudentAccount extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
     public double amount;
     public String name;
-    public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
+    // public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
+    Control ctrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +35,8 @@ public class CreateStudentAccount extends AppCompatActivity {
     }
 
     public void cSTUAccount(View view) {
+
+        ctrl = Control.getInstance();
         EditText customer_first_name = (EditText) findViewById(R.id.first_name_2);
         EditText customer_surname = (EditText) findViewById(R.id.surname_2);
 
@@ -47,9 +48,10 @@ public class CreateStudentAccount extends AppCompatActivity {
         int id = Integer.parseInt(idtext.getText().toString());
         accNumGenerator++;
         acc_num++;
+        ctrl.createAccount(3, name, acc_num, id);
 
 
-        accounts.add(new StudentAccount(name, acc_num, id));
+        // accounts.add(new StudentAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.student_account_output);
         output.setText(createSummary(name, acc_num, id));

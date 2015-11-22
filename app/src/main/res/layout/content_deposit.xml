@@ -15,18 +15,27 @@
 
 
     <EditText
+        android:id="@+id/acc_num"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account Number" />
 
     <EditText
+        android:id="@+id/deposit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Enter Depsit Amount" />
+        android:hint="Enter Deposit Amount" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="depositButton"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/deposit_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 </LinearLayout>

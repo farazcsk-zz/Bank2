@@ -53,6 +53,7 @@ public class CreateSavingsAccount extends AppCompatActivity {
         EditText idtext = (EditText) findViewById(R.id.ID_1);
         int id = Integer.parseInt(idtext.getText().toString());
         accNumGenerator++;
+        acc_num++;
 
         ctrl.createAccount(2, name, acc_num, id);
         // accounts.add(new SavingsAccount(name, acc_num, id));

@@ -14,6 +14,7 @@
     tools:showIn="@layout/activity_display_balance">
 
     <EditText
+        android:id="@+id/acc_num_1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account Number" />
@@ -21,6 +22,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="displayBalanceButton"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/display_balance_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 </LinearLayout>

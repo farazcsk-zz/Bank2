@@ -14,16 +14,19 @@
     tools:showIn="@layout/activity_create_disability_account">
 
     <EditText
+        android:id="@+id/first_name_8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer First Name" />
 
     <EditText
+        android:id="@+id/surname_8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer Surname" />
 
     <EditText
+        android:id="@+id/ID_8"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer ID" />
@@ -31,6 +34,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="cDisibilityAccount"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/disbility_account_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 </LinearLayout>

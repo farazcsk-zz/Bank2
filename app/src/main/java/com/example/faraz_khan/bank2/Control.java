@@ -21,7 +21,8 @@ public class Control {
     int accNumGenerator;
     double amount;
     String name;
-    private ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
+
+    ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
     public Control() {
         accounts.add(new FeesInterestAccount("Fees and Interest", accNumGenerator, 0));//initialiseaccount for interest and penalties
@@ -98,13 +99,14 @@ public class Control {
 
     public void deposit(int acc_number, double amount) {
                 //Write the instruction to the user
-                System.out.println("Enter account Number: ");
+        //System.out.println("Enter account Number: ");
 //Convert the string the user enters to an int
         //  acc_num = Integer.parseInt(input.nextLine());
                 //Write instruction to the user
-                System.out.println("Enter deposit amount: ");
+        //System.out.println("Enter deposit amount: ");
 //Convert the string entered by the user to a double
         // amount = Double.parseDouble(input.nextLine());
+
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number) {
                         accounts.get(i).deposit(amount);
@@ -115,20 +117,23 @@ public class Control {
     }
 
 
-    public void displayBalance(int acc_number) {
+    public double displayBalance(int acc_number) {
                 //Write the instruction to the user
-                System.out.println("Enter account Number: ");
+        //System.out.println("Enter account Number: ");
 //Convert the string the user enters to an int
-                acc_number = Integer.parseInt(input.nextLine());
-                for (int i = 0; i < accounts.size(); i++) {
+        //acc_number = Integer.parseInt(input.nextLine());
+
+
+        for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number) {
-                        System.out.println((accounts.get(i).get_balance()));
+                        amount = accounts.get(i).get_balance();
                         accounts.get(i).addTransaction(new Date(), "View Balance", amount);
+
 
                     }
                 }
 
-
+        return amount;
     }
 
 

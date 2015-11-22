@@ -11,19 +11,22 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.faraz_khan.bank2.CreateChildrensAccount"
-    tools:showIn="@layout/activity_new_childrens_account">
+    tools:showIn="@layout/activity_create_childrens_account">
 
     <EditText
+        android:id="@+id/first_name_9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer First Name" />
 
     <EditText
+        android:id="@+id/surname_9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer Surname" />
 
     <EditText
+        android:id="@+id/ID_9"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer ID" />
@@ -31,6 +34,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="cChildrensAccount"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/childrens_account_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 </LinearLayout>

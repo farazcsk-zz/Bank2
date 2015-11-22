@@ -53,6 +53,7 @@ public class CreateCurrentAccount extends AppCompatActivity {
         EditText idtext = (EditText) findViewById(R.id.ID);
         int id = Integer.parseInt(idtext.getText().toString());
         accNumGenerator++;
+        acc_num++;
 
 
         ctrl.createAccount(1, name, acc_num, id);
