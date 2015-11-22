@@ -15,11 +15,13 @@
 
 
     <EditText
+        android:id="@+id/acc_num_2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account Number" />
 
     <EditText
+        android:id="@+id/withdraw"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Withdrawl Amount" />
@@ -28,4 +30,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/withdraw_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 </LinearLayout>

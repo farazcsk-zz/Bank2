@@ -57,7 +57,7 @@ public class Control {
     }
 
 
-    public void createAccount(int option2, String name, int acc_number, int id) {
+    public void createAccount(int option2, String name, int acc_num, int id) {
 
 
                 switch (option2) {
@@ -80,16 +80,16 @@ public class Control {
                         accounts.add(new IRAccount(name, acc_num, id));
                         break;
                     case 7:
-                        accounts.add(new HighInterestAccount(name, accNumGenerator, id));
+                        accounts.add(new HighInterestAccount(name, acc_num, id));
                         break;
                     case 8:
-                        accounts.add(new IslamicAccount(name, accNumGenerator, id));
+                        accounts.add(new IslamicAccount(name, acc_num, id));
                         break;
                     case 9:
-                        accounts.add(new PrivateAccount(name, accNumGenerator, id));
+                        accounts.add(new PrivateAccount(name, acc_num, id));
                         break;
                     case 10:
-                        accounts.add(new LCRAccount(name, accNumGenerator, id));
+                        accounts.add(new LCRAccount(name, acc_num, id));
                         break;
                 }
 
@@ -109,9 +109,11 @@ public class Control {
 
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number) {
+                        System.out.println(acc_number);
+
                         accounts.get(i).deposit(amount);
                         accounts.get(i).addTransaction(new Date(), "Deposit", amount);
-
+                        System.out.println(amount);
                     }
                 }
     }
