@@ -35,7 +35,7 @@ public class Control {
                     accounts.get(0).withdraw(charge);
                     accounts.get(i).addTransaction(new Date(), "Interest", (charge));
                 }
-                System.out.println("Interest has been paid.");
+                //System.out.println("Interest has been paid.");
             }
         }, 30000, 30000);
 
@@ -58,6 +58,7 @@ public class Control {
 
 
     public void createAccount(int option2, String name, int acc_num, int id) {
+
 
 
                 switch (option2) {
@@ -139,15 +140,15 @@ public class Control {
     }
 
 
-    public void withdraw(int acc_number, double amount) {
+    public double withdraw(int acc_number, double amount) {
                 //Write the instruction to the user
                 System.out.println("Enter account Number: ");
 //Convert the string the user enters to an int
-                acc_number = Integer.parseInt(input.nextLine());
+        //acc_number = Integer.parseInt(input.nextLine());
                 //Write instruction to the user
                 System.out.println("Enter deposit amount: ");
 //Convert the string entered by the user to a double
-                amount = Double.parseDouble(input.nextLine());
+        //amount = Double.parseDouble(input.nextLine());
 
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number) {
@@ -158,6 +159,7 @@ public class Control {
 
                             } else {
                                 System.out.println("The maximum daily withdrawal for a Current account is ?500. This transaction has been cancelled");
+
 
                             }
                         } else if (accounts.get(i).get_acc_type() == "Savings") {
@@ -183,6 +185,7 @@ public class Control {
 
                     }
                 }
+        return amount;
     }
 
 
@@ -282,7 +285,92 @@ public class Control {
 
     }
 
+    public void changeOverdraft(int accNum, int counter) {
+        System.out.println("Enter Account Number:");
+        accNum = Integer.parseInt(input.nextLine());
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == accNum) {
+                counter++;
+                System.out.println("The current overdraft limit is �" + account.getOverdraft());
+                System.out.println("The maximum allowed overdraft limit is �" + account.getOverdraftLimit());
+                System.out.println("Enter new overdraft limit:");
+                int limit = Integer.parseInt(input.nextLine());
+                if (limit <= account.getOverdraftLimit()) {
+                    account.changeOverdraft(limit);
+                    account.addTransaction(new Date(), "New Overdraft Limit Set", limit);
+                } else {
+                    System.out.println("Please enter a value between 0 and " +
+                            account.getOverdraftLimit());
+                }
+            }
+        }
+        if (counter == 0) { //if no valid account was found
+            System.out.println("Account number not recognised.");
+        }
 
+    }
 
+    public void createLoan(String name, int id, int accNum, int counter) {
+        System.out.println("Enter customer's first and last name:");
+        // name = input.nextLine();
+        System.out.println("Enter Customer ID:");
+        // id = Integer.parseInt(input.nextLine());
+        System.out.println("Enter account number for funds to be paid into:");
+        accNum = Integer.parseInt(input.nextLine());
+        for (int i = 0; i < accounts.size(); i++) {
+            if (accounts.get(i).getAccountNum() == accNum) {
+                counter++;
+                if ("Loan".equals(accounts.get(i).get_acc_type())) {
+                    System.out.println("Funds must be paid into a bank account.");
+
+                } else {
+                    System.out.println("Enter loan amount:");
+                    int loan = Integer.parseInt(input.nextLine());
+                    if (loan > 0 && loan <= 100000) {
+                        accNumGenerator++;
+                        accounts.add(new Loan(name, accNumGenerator, id));
+                        accounts.get(accNumGenerator).setLoanAmount(loan);
+                        System.out.println("Your loan account number is " + accNumGenerator);
+                        accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
+                                loan);
+                        accounts.get(accNumGenerator).withdraw(loan);
+                        accounts.get(i).deposit(loan);
+                        accounts.get(i).addTransaction(new Date(), "Loan", amount);
+                    } else {
+                        System.out.println("Please choose a value above zero up to �100,000");
+                    }
+
+                }
+            }
+        }
+        if (counter == 0) { //if no valid account was found
+            System.out.println("Account number not recognised.");
+
+        }
+    }
+
+    public void viewLoanPaymentHistory(int accNum, int counter) {
+        System.out.println("Enter Account Number:");
+        // accNum = Integer.parseInt(input.nextLine());
+        int h = 0;
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == accNum) {
+                counter++;
+                if ("Loan".equals(account.get_acc_type())) {
+                    while (h < account.getLoanPayments().size()) {
+                        System.out.println(account.getLoanPayments().get(h).getLoanType() + " " + account.getLoanPayments().get(h).getLoanDate() + " " + account.getLoanPayments().get(h).getLoanAmount());
+                        h++;
+                    }
+                } else {
+                    System.out.println("Please enter a Loan account number.");
+                }
+            }
+        }
+        if (counter == 0) { //if no valid account was found
+            System.out.println("Account number not recognised.");
+        }
 }
+}
+
+
 
