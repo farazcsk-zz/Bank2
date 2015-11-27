@@ -65,30 +65,6 @@ public class Control {
                 switch (option2) {
                     case 1:
                         accounts.add(new CurrentAccount(name, acc_num, id));
-                        CareTaker careTaker = new CareTaker();
-                        accounts.get(1).deposit(10.00);
-                        accounts.get(1).deposit(20.00);
-
-                        careTaker.add(accounts.get(1).saveMemento());
-
-                        accounts.get(1).deposit(30.00);
-
-                        careTaker.add(accounts.get(1).saveMemento());
-
-                        accounts.get(1).deposit(40.00);
-
-                        System.out.println("Current State:" + accounts.get(1).getBalance());
-
-                        accounts.get(1).getStateFromMemento(careTaker.get(0));
-                        System.out.println("First Saved State: " + accounts.get(1).getBalance());
-
-                        accounts.get(1).getStateFromMemento(careTaker.get(1));
-                        System.out.println("Second Saved State: " + accounts.get(1).getBalance());
-
-
-
-
-
                         break;
                     case 2:
                         accounts.add(new SavingsAccount(name, acc_num, id));
