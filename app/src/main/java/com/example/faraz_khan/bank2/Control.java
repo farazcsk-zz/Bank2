@@ -235,15 +235,15 @@ public class Control {
 
                         } else {
                             System.out.println("There are insufficient funds to make this transfer");
-                            accounts.get(1).getStateFromMemento(careTaker.get(0));
+                            accounts.get(i).getStateFromMemento(careTaker.get(0));
 
                         }
+                    } else if (counter == 0) { //if no valid account was found
+                        System.out.println("Account number not recognised.");
+                        accounts.get(i).getStateFromMemento(careTaker.get(0));
                     }
                 }
-        if (counter == 0) { //if no valid account was found
-            System.out.println("Account number not recognised.");
-            accounts.get(1).getStateFromMemento(careTaker.get(0));
-        }
+
 
 
         System.out.println("Enter account Number to transfer money TO: ");
@@ -252,18 +252,18 @@ public class Control {
         int counterTwo = 0;
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number2) {
+                        counterTwo++;
                         accounts.get(i).deposit(amount);
                         accounts.get(i).addTransaction(new Date(), "Transfer", amount);
 
+                    } else if (counterTwo == 0) { //if no valid account was found
+                        System.out.println("Account number not recognised. No funds weretransferred.");
+                        //accounts.get(acc_number).deposit(amount); //put funds back in first account /***2.rollback feature***/
+                        accounts.get(i).getStateFromMemento(careTaker.get(0));
                     }
                 }
 
                 System.out.println("Payment has been successfully transferred");
-        if (counterTwo == 0) { //if no valid account was found
-            System.out.println("Account number not recognised. No funds weretransferred.");
-            //accounts.get(acc_number).deposit(amount); //put funds back in first account /***2.rollback feature***/
-            accounts.get(1).getStateFromMemento(careTaker.get(0));
-        }
 
 
     }
