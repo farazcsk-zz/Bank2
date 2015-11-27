@@ -22,6 +22,7 @@ public class BaseAccount implements Account {
     ArrayList<LoanHistory> loanHistory = new ArrayList<>();
     int id;
 
+
     //Set up a new account
     public BaseAccount(String acc_owner, int acc_num, String acc_type, int _id, int wdLimit, double
             intRate, int odLimit) {
@@ -34,6 +35,17 @@ public class BaseAccount implements Account {
         overdraftLimit = odLimit;
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public Memento saveMemento() {
+        return new Memento(this.balance);
+    }
+
+    public void getStateFromMemento(Memento Memento) {
+        this.balance = Memento.getBalance();
+    }
     //Add account holder
     public void AddAccHolder(String acc_owner, int acc_num) {
         holders.add(acc_owner);
@@ -127,5 +139,6 @@ public class BaseAccount implements Account {
     public ArrayList<LoanHistory> getLoanPayments() {
         return loanHistory;
     }
+
 }
 

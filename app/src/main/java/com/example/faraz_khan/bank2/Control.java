@@ -61,9 +61,34 @@ public class Control {
 
 
 
+
                 switch (option2) {
                     case 1:
                         accounts.add(new CurrentAccount(name, acc_num, id));
+                        CareTaker careTaker = new CareTaker();
+                        accounts.get(1).deposit(10.00);
+                        accounts.get(1).deposit(20.00);
+
+                        careTaker.add(accounts.get(1).saveMemento());
+
+                        accounts.get(1).deposit(30.00);
+
+                        careTaker.add(accounts.get(1).saveMemento());
+
+                        accounts.get(1).deposit(40.00);
+
+                        System.out.println("Current State:" + accounts.get(1).getBalance());
+
+                        accounts.get(1).getStateFromMemento(careTaker.get(0));
+                        System.out.println("First Saved State: " + accounts.get(1).getBalance());
+
+                        accounts.get(1).getStateFromMemento(careTaker.get(1));
+                        System.out.println("Second Saved State: " + accounts.get(1).getBalance());
+
+
+
+
+
                         break;
                     case 2:
                         accounts.add(new SavingsAccount(name, acc_num, id));
@@ -190,32 +215,43 @@ public class Control {
 
 
     public void transferMoney(int acc_number, double amount, int acc_number2) {              //Write the instruction to the user
-                System.out.println("Enter account Number to transfer money FROM:");
+        //System.out.println("Enter account Number to transfer money FROM:");
                 //Convert the string the user enters to an int
-                acc_number = Integer.parseInt(input.nextLine());
+        // acc_number = Integer.parseInt(input.nextLine());
                 //Write instruction to the user
-                System.out.println("Enter transfer amount: ");
+        //System.out.println("Enter transfer amount: ");
 //Convert the string entered by the user to a double
-                amount = Double.parseDouble(input.nextLine());
+        // amount = Double.parseDouble(input.nextLine());
+        CareTaker careTaker = new CareTaker();
+        int counter = 0;
                 for (int i = 0; i < accounts.size(); i++) {
                     if (accounts.get(i).getAccountNum() == acc_number) {
+                        counter++;
 
                         if (accounts.get(i).get_balance() >= amount) {
+                            careTaker.add(accounts.get(i).saveMemento());
                             accounts.get(i).withdraw(amount);
                             accounts.get(i).addTransaction(new Date(), "Transfer", amount);
 
                         } else {
                             System.out.println("There are insufficient funds to make this transfer");
+                            accounts.get(1).getStateFromMemento(careTaker.get(0));
 
                         }
                     }
                 }
+        if (counter == 0) { //if no valid account was found
+            System.out.println("Account number not recognised.");
+            accounts.get(1).getStateFromMemento(careTaker.get(0));
+        }
 
-                System.out.println("Enter account Number to transfer money TO: ");
+
+        System.out.println("Enter account Number to transfer money TO: ");
                 //Convert the string the user enters to an int
-        acc_number2 = Integer.parseInt(input.nextLine());
+        //  acc_number2 = Integer.parseInt(input.nextLine());
+        int counterTwo = 0;
                 for (int i = 0; i < accounts.size(); i++) {
-                    if (accounts.get(i).getAccountNum() == acc_number) {
+                    if (accounts.get(i).getAccountNum() == acc_number2) {
                         accounts.get(i).deposit(amount);
                         accounts.get(i).addTransaction(new Date(), "Transfer", amount);
 
@@ -223,6 +259,11 @@ public class Control {
                 }
 
                 System.out.println("Payment has been successfully transferred");
+        if (counterTwo == 0) { //if no valid account was found
+            System.out.println("Account number not recognised. No funds weretransferred.");
+            //accounts.get(acc_number).deposit(amount); //put funds back in first account /***2.rollback feature***/
+            accounts.get(1).getStateFromMemento(careTaker.get(0));
+        }
 
 
     }
