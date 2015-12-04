@@ -14,16 +14,19 @@
     tools:showIn="@layout/activity_transfer_money">
 
     <EditText
+        android:id="@+id/transfer_from"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account To Transfer Funds From" />
 
     <EditText
+        android:id="@+id/transfer_amount"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Amount To Transfer" />
 
     <EditText
+        android:id="@+id/transfer_to"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account To Transfer Money To" />
@@ -31,6 +34,13 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="transferButton"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/transfer_money_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="..." />
 
 </LinearLayout>

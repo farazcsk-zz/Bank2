@@ -8,4 +8,6 @@ public interface Account {
 
     double get_balance();
 
+    double accept(Visitors visitor);
+
 }

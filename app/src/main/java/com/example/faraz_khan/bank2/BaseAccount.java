@@ -35,6 +35,10 @@ public class BaseAccount implements Account {
         overdraftLimit = odLimit;
     }
 
+    public double accept(Visitors visitor) {
+        return visitor.visit(this);
+    }
+
     public double getBalance() {
         return balance;
     }

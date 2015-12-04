@@ -25,6 +25,7 @@ public class Control {
     ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
 
     public Control() {
+        final Interest interest = new Interest();
         accounts.add(new FeesInterestAccount("Fees and Interest", accNumGenerator, 0));//initialiseaccount for interest and penalties
         /***4. Interest payments***/
         timer.schedule(new TimerTask() {
@@ -32,7 +33,8 @@ public class Control {
             public void run() {
                 for (int i = 0; i < accounts.size(); i++) {
                     double charge = accounts.get(i).payInterest();
-                    accounts.get(0).withdraw(charge);
+                    //interest visit
+                    accounts.get(i).accept(interest);
                     accounts.get(i).addTransaction(new Date(), "Interest", (charge));
                 }
                 //System.out.println("Interest has been paid.");
@@ -328,6 +330,7 @@ public class Control {
     }
 
     public void createLoan(String name, int id, int accNum, int counter) {
+        Penalty penalty = new Penalty();
         System.out.println("Enter customer's first and last name:");
         // name = input.nextLine();
         System.out.println("Enter Customer ID:");
@@ -353,6 +356,7 @@ public class Control {
                         accounts.get(accNumGenerator).withdraw(loan);
                         accounts.get(i).deposit(loan);
                         accounts.get(i).addTransaction(new Date(), "Loan", amount);
+                        accounts.get(i).accept(penalty);
                     } else {
                         System.out.println("Please choose a value above zero up to �100,000");
                     }
