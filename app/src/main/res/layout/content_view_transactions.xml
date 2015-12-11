@@ -11,9 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.faraz_khan.bank2.ViewTransactions"
+
     tools:showIn="@layout/activity_view_transactions">
 
     <EditText
+        android:id="@+id/acc_num_transactions"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account Number" />
@@ -21,6 +23,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="viewTransactionsButton"
         android:text="ENTER" />
+
+    <TextView
+        android:id="@+id/view_transactions_output"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ListView
+        android:id="@+id/transaction_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

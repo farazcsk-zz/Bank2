@@ -27,4 +27,5 @@
     <string name="title_activity_change_overdraft">ChangeOverdraft</string>
     <string name="title_activity_create_loan">CreateLoan</string>
     <string name="title_activity_view_loan_history">ViewLoanHistory</string>
+    <string name="title_activity_transaction">TransactionActivity</string>
 </resources>
