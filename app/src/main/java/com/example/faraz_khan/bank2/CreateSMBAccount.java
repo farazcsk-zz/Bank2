@@ -47,7 +47,7 @@ public class CreateSMBAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
-        ctrl.createAccount(5, name, acc_num, id);
+        ctrl.createAccount(5, name, acc_num, id, "");
         //accounts.add(new SMBAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.smb_account_output);

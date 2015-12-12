@@ -105,6 +105,22 @@
         <activity
             android:name=".ViewLoanHistory"
             android:label="@string/title_activity_view_loan_history"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateStandardLoan"
+            android:label="@string/title_activity_create_standard_loan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateBusinessLoan"
+            android:label="@string/title_activity_create_business_loan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreateStudentLoan"
+            android:label="@string/title_activity_create_student_loan"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CreatePersonalLoan"
+            android:label="@string/title_activity_create_personal_loan"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

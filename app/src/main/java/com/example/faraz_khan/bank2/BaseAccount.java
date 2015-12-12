@@ -10,6 +10,7 @@ public class BaseAccount implements Account {
 
     public double balance;
     public String account_type;
+    public String loan_reasons;
     public int overdraft;
     public int loanAmount;
     protected double interestRate;
@@ -25,7 +26,7 @@ public class BaseAccount implements Account {
 
     //Set up a new account
     public BaseAccount(String acc_owner, int acc_num, String acc_type, int _id, int wdLimit, double
-            intRate, int odLimit) {
+            intRate, int odLimit, String loanReasons) {
         holders.add(acc_owner);
         acc_number = acc_num;
         account_type = acc_type;
@@ -33,6 +34,8 @@ public class BaseAccount implements Account {
         withdrawLimit = wdLimit; //id, withdraw limit, interest rate and overdraft limit added to thebase account
         interestRate = intRate;
         overdraftLimit = odLimit;
+        loan_reasons = loanReasons;
+
     }
 
     public double accept(Visitors visitor) {
@@ -136,7 +139,7 @@ public class BaseAccount implements Account {
         return transactions;
     }
 
-    public void addLoanTransaction(Date d, String loanPaymentType, double amount) {
+    public void addLoanTransaction(Date d, String loanPaymentType, double amount, String loanReason) {
         loanHistory.add(new LoanHistory(d, loanPaymentType, amount));
     }
 

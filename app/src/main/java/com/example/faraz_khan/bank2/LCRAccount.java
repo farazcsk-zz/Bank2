@@ -5,7 +5,7 @@ package com.example.faraz_khan.bank2;
  */
 class LCRAccount extends BaseAccount {
     //low credit rating account
-    public LCRAccount(String owner, int accNum, int _id) {
-        super(owner, accNum, "LCR", _id, 200, 0, 0);
+    public LCRAccount(String owner, int accNum, int _id, String loanReasons) {
+        super(owner, accNum, "LCR", _id, 200, 0, 0, loanReasons);
     }
 }

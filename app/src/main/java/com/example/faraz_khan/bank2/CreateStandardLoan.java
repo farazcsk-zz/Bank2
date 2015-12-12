@@ -9,22 +9,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-public class CreateCurrentAccount extends AppCompatActivity {
+public class CreateStandardLoan extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
     public double amount;
     public String name;
-    public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
-
     Control ctrl;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_current_account);
+        setContentView(R.layout.activity_create_standard_loan);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -32,51 +27,49 @@ public class CreateCurrentAccount extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Press Back To Return to Create Account", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
     }
 
 
-    public void ccAccount(View view) {
+    public void createStandardLoanButton(View view) {
         ctrl = Control.getInstance();
-
-
-        EditText customer_first_name = (EditText) findViewById(R.id.first_name);
-        EditText customer_surname = (EditText) findViewById(R.id.surname);
+        EditText customer_first_name = (EditText) findViewById(R.id.first_name_standardloan);
+        EditText customer_surname = (EditText) findViewById(R.id.surname_standardloan);
 
         name = customer_first_name.getText().toString();
         name += " ";
         name += customer_surname.getText().toString();
 
-        EditText idtext = (EditText) findViewById(R.id.ID);
+        EditText idtext = (EditText) findViewById(R.id.ID_standardloan);
         int id = Integer.parseInt(idtext.getText().toString());
-        accNumGenerator++;
-        acc_num++;
+        EditText accNumText = (EditText) findViewById(R.id.accnum_standardloan);
+        acc_num = Integer.parseInt(accNumText.getText().toString());
+        EditText amountText = (EditText) findViewById(R.id.amount_standardloan);
+        amount = Double.parseDouble(amountText.getText().toString());
 
 
-        ctrl.createAccount(1, name, acc_num, id, "");
+        ctrl.createLoan(name, id, acc_num, 1, "Standard Loan");
+        //accounts.add(new BusinessAccount(name, acc_num, id));
 
-        // accounts.add(new CurrentAccount(name, acc_num, id));
-
-
-        TextView output = (TextView) findViewById(R.id.current_account_output);
-        output.setText(createSummary(name, acc_num, id));
+        TextView output = (TextView) findViewById(R.id.standardloan_output);
+        output.setText(createSummary(name, acc_num, amount));
 
 
     }
 
-    public String createSummary(String name, int acc_num, int id) {
-        String message = "Your Current Account: ";
+    public String createSummary(String name, int acc_num, double amount) {
+
+        String message = "Your Standard Loan: ";
         message += "\nName: " + name;
         message += "\nAccount Number: " + acc_num;
-        message += "\nID: " + id;
-        message += "\nHas Successfully Been Created!";
+        message += "\nAmount: " + amount;
+        message += "\nHas Successfully Been Approved!";
 
 
         return message;
     }
 
 }
-

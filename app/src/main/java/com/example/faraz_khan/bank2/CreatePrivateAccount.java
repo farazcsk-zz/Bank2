@@ -47,7 +47,7 @@ public class CreatePrivateAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
-        ctrl.createAccount(8, name, acc_num, id);
+        ctrl.createAccount(8, name, acc_num, id, "");
 
 
         TextView output = (TextView) findViewById(R.id.private_account_output);

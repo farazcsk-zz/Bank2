@@ -9,17 +9,18 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class CreateChildrensAccount extends AppCompatActivity {
+public class CreatePersonalLoan extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
     public double amount;
     public String name;
+    public String reason;
     Control ctrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_create_childrens_account);
+        setContentView(R.layout.activity_create_personal_loan);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -33,36 +34,43 @@ public class CreateChildrensAccount extends AppCompatActivity {
         });
     }
 
-    public void cChildrensAccount(View view) {
+    public void createStudentLoanButton(View view) {
         ctrl = Control.getInstance();
-        EditText customer_first_name = (EditText) findViewById(R.id.first_name_9);
-        EditText customer_surname = (EditText) findViewById(R.id.surname_9);
+        EditText customer_first_name = (EditText) findViewById(R.id.first_name_personalloan);
+        EditText customer_surname = (EditText) findViewById(R.id.surname_personalloan);
+        EditText reasonE = (EditText) findViewById(R.id.reason_personalloan);
 
         name = customer_first_name.getText().toString();
         name += " ";
         name += customer_surname.getText().toString();
 
-        EditText idtext = (EditText) findViewById(R.id.ID_9);
+        reason = reasonE.getText().toString();
+
+        EditText idtext = (EditText) findViewById(R.id.ID_personalloan);
         int id = Integer.parseInt(idtext.getText().toString());
-        accNumGenerator++;
-        acc_num++;
+        EditText accNumText = (EditText) findViewById(R.id.accnum_personalloan);
+        acc_num = Integer.parseInt(accNumText.getText().toString());
+        EditText amountText = (EditText) findViewById(R.id.amount_studentloan);
+        amount = Double.parseDouble(amountText.getText().toString());
 
-        ctrl.createAccount(9, name, acc_num, id, "");
 
+        ctrl.createLoan(name, id, acc_num, 4, reason);
+        //accounts.add(new BusinessAccount(name, acc_num, id));
 
-        TextView output = (TextView) findViewById(R.id.childrens_account_output);
-        output.setText(createSummary(name, acc_num, id));
+        TextView output = (TextView) findViewById(R.id.personalloan_output);
+        output.setText(createSummary(name, acc_num, amount, reason));
 
 
     }
 
-    public String createSummary(String name, int acc_num, int id) {
+    public String createSummary(String name, int acc_num, double amount, String reason) {
 
-        String message = "Your Childrens Account: ";
+        String message = "Your Personal Loan: ";
         message += "\nName: " + name;
         message += "\nAccount Number: " + acc_num;
-        message += "\nID: " + id;
-        message += "\nHas Successfully Been Created!";
+        message += "\nAmount: " + amount;
+        message += "\nReason: " + reason;
+        message += "\nHas Successfully Been Approved!";
 
 
         return message;

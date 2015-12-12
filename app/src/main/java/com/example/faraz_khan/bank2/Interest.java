@@ -9,8 +9,14 @@ public class Interest implements Visitors {
     }
 
     public double visit(BaseAccount account) {
-        account.deposit(account.get_balance() * 0.5);
+
+        if ("Loan".equals(account.get_acc_type())) {
+            return account.get_balance();
+
+        } else
+            account.deposit(account.get_balance() * 0.5);
 
         return account.get_balance();
     }
 }
+

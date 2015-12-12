@@ -7,7 +7,7 @@ class FeesInterestAccount extends BaseAccount {
     /***
      * 1. central account for paying interest and receiving penalties
      ***/
-    public FeesInterestAccount(String owner, int accNum, int _id) {
-        super(owner, accNum, "FeesInterest", _id, 0, 0, 0);
+    public FeesInterestAccount(String owner, int accNum, int _id, String loanReasons) {
+        super(owner, accNum, "FeesInterest", _id, 0, 0, 0, loanReasons);
     }
 }

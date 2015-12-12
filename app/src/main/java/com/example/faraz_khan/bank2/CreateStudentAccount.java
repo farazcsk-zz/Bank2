@@ -48,7 +48,7 @@ public class CreateStudentAccount extends AppCompatActivity {
         int id = Integer.parseInt(idtext.getText().toString());
         accNumGenerator++;
         acc_num++;
-        ctrl.createAccount(3, name, acc_num, id);
+        ctrl.createAccount(3, name, acc_num, id, "");
 
 
         // accounts.add(new StudentAccount(name, acc_num, id));

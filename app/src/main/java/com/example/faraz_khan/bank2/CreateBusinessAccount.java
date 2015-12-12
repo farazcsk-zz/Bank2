@@ -49,7 +49,7 @@ public class CreateBusinessAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
-        ctrl.createAccount(4, name, acc_num, id);
+        ctrl.createAccount(4, name, acc_num, id, "");
         //accounts.add(new BusinessAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.business_account_output);

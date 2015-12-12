@@ -55,7 +55,7 @@ public class CreateSavingsAccount extends AppCompatActivity {
         accNumGenerator++;
         acc_num++;
 
-        ctrl.createAccount(2, name, acc_num, id);
+        ctrl.createAccount(2, name, acc_num, id, "");
         // accounts.add(new SavingsAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.savings_account_output);

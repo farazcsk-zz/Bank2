@@ -29,15 +29,16 @@ public class Control {
 
     public Control() {
         final Interest interest = new Interest();
-        accounts.add(new FeesInterestAccount("Fees and Interest", accNumGenerator, 0));//initialiseaccount for interest and penalties
+
+
         /***4. Interest payments***/
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 for (int i = 0; i < accounts.size(); i++) {
-                    double charge = accounts.get(i).payInterest();
+                    double charge = accounts.get(i).accept(interest);
                     //interest visit
-                    accounts.get(i).accept(interest);
+
                     accounts.get(i).addTransaction(new Date(), "Interest", (charge));
                 }
                 //System.out.println("Interest has been paid.");
@@ -62,39 +63,39 @@ public class Control {
     }
 
 
-    public void createAccount(int option2, String name, int acc_num, int id) {
+    public void createAccount(int option2, String name, int acc_num, int id, String loanReasons) {
 
-
+        accNumGenerator++;
         switch (option2) {
             case 1:
-                accounts.add(new CurrentAccount(name, acc_num, id));
+                accounts.add(new CurrentAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 2:
-                accounts.add(new SavingsAccount(name, acc_num, id));
+                accounts.add(new SavingsAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 3:
-                accounts.add(new StudentAccount(name, acc_num, id));
+                accounts.add(new StudentAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 4:
-                accounts.add(new BusinessAccount(name, acc_num, id));
+                accounts.add(new BusinessAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 5:
-                accounts.add(new SMBAccount(name, acc_num, id));
+                accounts.add(new SMBAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 6:
-                accounts.add(new IRAccount(name, acc_num, id));
+                accounts.add(new IRAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 7:
-                accounts.add(new HighInterestAccount(name, acc_num, id));
+                accounts.add(new HighInterestAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 8:
-                accounts.add(new IslamicAccount(name, acc_num, id));
+                accounts.add(new IslamicAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 9:
-                accounts.add(new PrivateAccount(name, acc_num, id));
+                accounts.add(new PrivateAccount(name, accNumGenerator, id, loanReasons));
                 break;
             case 10:
-                accounts.add(new LCRAccount(name, acc_num, id));
+                accounts.add(new LCRAccount(name, accNumGenerator, id, loanReasons));
                 break;
         }
 
@@ -250,10 +251,6 @@ public class Control {
 
     public void payInterest() {
 
-        for (int i = 0; i < accounts.size(); i++) {
-            accounts.get(i).interest_rate();
-        }
-        System.out.println("Interest has been paid");
 
     }
 
@@ -335,8 +332,28 @@ public class Control {
 
     }
 
-    public void createLoan(String name, int id, int accNum, int counter) {
-        Penalty penalty = new Penalty();
+    public void chooseLoanType(int option, String name, int acc_num, int id, String loanReasons) {
+        switch (option) {
+            case 1:
+                accounts.add(new Loan(name, acc_num, id, loanReasons));
+                break;
+            case 2:
+                accounts.add(new BusinessLoan(name, acc_num, id, loanReasons));
+                break;
+            case 3:
+                accounts.add(new StudentLoan(name, acc_num, id, loanReasons));
+                break;
+            case 4:
+                accounts.add(new PersonalLoan(name, acc_num, id, loanReasons));
+                break;
+        }
+
+    }
+
+
+    public void createLoan(String name, int id, int accNum, int option, String loanReasons) {
+        int counter = 0;
+        final Penalty penalty = new Penalty();
         System.out.println("Enter customer's first and last name:");
         // name = input.nextLine();
         System.out.println("Enter Customer ID:");
@@ -352,27 +369,73 @@ public class Control {
                 } else {
                     System.out.println("Enter loan amount:");
                     int loan = Integer.parseInt(input.nextLine());
-                    if (loan > 0 && loan <= 100000) {
+                    if (option == 3) {
+                        System.out.println("Enter loan amount:");
+                        //int loan = Integer.parseInt(input.nextLine());
+                        if (loan > 0 && loan <= 25000) {
+                            accNumGenerator++;
+                            //accounts.add(new Loan(name, accNumGenerator, id));
+                            chooseLoanType(option, name, accNumGenerator, id, loanReasons);
+                            accounts.get(accNumGenerator).setLoanAmount(loan);
+                            System.out.println("Your loan account number is " + accNumGenerator);
+                            accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
+                                    loan, loanReasons);
+                            accounts.get(accNumGenerator).withdraw(loan);
+                            accounts.get(i).deposit(loan);
+                            accounts.get(i).addTransaction(new Date(), "Loan", amount);
+                            timer.schedule(new TimerTask() {
+                                @Override
+                                public void run() {
+                                    for (int i = 0; i < accounts.size(); i++) {
+                                        double charge = accounts.get(i).accept(penalty);
+                                        //interest visit
+
+                                        accounts.get(i).addTransaction(new Date(), " Student Loan Payment", (charge));
+                                    }
+                                    //System.out.println("Interest has been paid.");
+                                }
+                            }, 30000, 30000);
+
+                        } else if (loan > 25000) {
+                            System.out.println("A Student Loan cannot exceed 25000");
+                        }
+
+
+                    } else if (loan > 0 && loan <= 100000) {
                         accNumGenerator++;
-                        accounts.add(new Loan(name, accNumGenerator, id));
+                        //accounts.add(new Loan(name, accNumGenerator, id));
+                        chooseLoanType(option, name, accNumGenerator, id, loanReasons);
                         accounts.get(accNumGenerator).setLoanAmount(loan);
                         System.out.println("Your loan account number is " + accNumGenerator);
                         accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
-                                loan);
+                                loan, loanReasons);
                         accounts.get(accNumGenerator).withdraw(loan);
                         accounts.get(i).deposit(loan);
                         accounts.get(i).addTransaction(new Date(), "Loan", amount);
-                        accounts.get(i).accept(penalty);
+                        timer.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                for (int i = 0; i < accounts.size(); i++) {
+
+                                    double charge = accounts.get(i).accept(penalty);
+                                    //interest visit
+
+                                    accounts.get(i).addTransaction(new Date(), "Loan Payment", (charge));
+                                }
+                                //System.out.println("Interest has been paid.");
+                            }
+                        }, 30000, 30000);
+
                     } else {
                         System.out.println("Please choose a value above zero up to �100,000");
                     }
 
                 }
             }
-        }
-        if (counter == 0) { //if no valid account was found
-            System.out.println("Account number not recognised.");
+            if (counter == 0) { //if no valid account was found
+                System.out.println("Account number not recognised.");
 
+            }
         }
     }
 

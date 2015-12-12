@@ -10,39 +10,51 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.faraz_khan.bank2.CreateLoan"
-    tools:showIn="@layout/activity_create_loan">
+    tools:context="com.example.faraz_khan.bank2.CreateBusinessLoan"
+    tools:showIn="@layout/activity_create_business_loan">
 
+    <EditText
+        android:id="@+id/first_name_businessloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter Customer First Name" />
+
+    <EditText
+        android:id="@+id/surname_businessloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter Customer Surname" />
+
+    <EditText
+        android:id="@+id/ID_businessloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter Customer ID" />
+
+    <EditText
+        android:id="@+id/accnum_businessloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter account number for funds to be paid into" />
+
+    <EditText
+        android:id="@+id/amount_businessloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter Loan Amount" />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="createBusinessLoanButton"
+        android:text="ENTER" />
 
     <TextView
+        android:id="@+id/businessloan_output"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="CREATE LOAN" />
+        android:text="..." />
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="createStandardLoan"
-        android:text="New Standard Loan"
-
-        />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="createBusinessLoan"
-        android:text="New Business Loan" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="createStudentLoan"
-        android:text="New Student Loan" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:onClick="createPersonalLoan"
-        android:text="New Personal Loan" />
 
 </LinearLayout>

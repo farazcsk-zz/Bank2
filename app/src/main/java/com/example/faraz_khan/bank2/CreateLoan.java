@@ -1,5 +1,6 @@
 package com.example.faraz_khan.bank2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,4 +27,23 @@ public class CreateLoan extends AppCompatActivity {
         });
     }
 
+    public void createStandardLoan(View view) {
+        Intent CreateStandardLoan = new Intent(this, com.example.faraz_khan.bank2.CreateStandardLoan.class);
+        startActivity(CreateStandardLoan);
+    }
+
+    public void createBusinessLoan(View view) {
+        Intent CreateBusinessLoan = new Intent(this, com.example.faraz_khan.bank2.CreateBusinessLoan.class);
+        startActivity(CreateBusinessLoan);
+    }
+
+    public void createStudentLoan(View view) {
+        Intent CreateStudentAccount = new Intent(this, com.example.faraz_khan.bank2.CreateStudentAccount.class);
+        startActivity(CreateStudentAccount);
+    }
+
+    public void createPersonalLoan(View view) {
+        Intent CreatePersonalLoan = new Intent(this, com.example.faraz_khan.bank2.CreatePersonalLoan.class);
+        startActivity(CreatePersonalLoan);
+    }
 }

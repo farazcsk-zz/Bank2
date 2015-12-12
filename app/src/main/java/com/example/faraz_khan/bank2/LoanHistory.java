@@ -29,9 +29,3 @@ class LoanHistory {
     }
 }
 
-class Loan extends BaseAccount {
-    //loan acts as an account
-    public Loan(String owner, int accNum, int _id) {
-        super(owner, accNum, "Loan", _id, 0, 0, 0);
-    }
-}
