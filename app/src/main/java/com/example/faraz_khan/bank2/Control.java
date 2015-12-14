@@ -498,10 +498,10 @@ public class Control {
                 if ("Loan".equals(account.get_acc_type())) {
                     viewLoanList.add("Loan Amount: " + account.getLoanAmount());
                     viewLoanList.add("Amount Due: " + account.get_balance());
-                    viewLoanList.add("Monthly Payment: " + (account.get_balance() / 36) + "Pounds For 36 Months");
+                    viewLoanList.add("Monthly Payment: " + (account.get_balance() / 36) + " Pounds For 36 Months");
                     viewLoanList.add("Name: " + account.getHolderName());
                     while (h < account.getLoanPayments().size()) {
-                        System.out.println(account.getLoanPayments().get(h).getLoanType() + " " + account.getLoanPayments().get(h).getLoanDate() + " " + account.getLoanPayments().get(h).getLoanAmount());
+                        viewLoanList.add(account.getLoanPayments().get(h).getLoanType() + " " + account.getLoanPayments().get(h).getLoanDate() + " " + account.getLoanPayments().get(h).getLoanAmount());
                         h++;
                     }
                 } else {

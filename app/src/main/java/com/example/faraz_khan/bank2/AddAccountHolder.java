@@ -48,8 +48,6 @@ public class AddAccountHolder extends AppCompatActivity {
         acc_number = Integer.parseInt(accText.getText().toString());
 
 
-        //accounts.add(new BusinessAccount(name, acc_num, id));
-
         List<String> AddAccountHolderList = new ArrayList<>();
         AddAccountHolderList = ctrl.addAccountHolder(acc_number, name);
 
