@@ -53,14 +53,14 @@ public class BaseAccount implements Account {
     public void getStateFromMemento(Memento Memento) {
         this.balance = Memento.getBalance();
     }
-    //Add account holder
+
     public void AddAccHolder(String acc_owner, int acc_num) {
         holders.add(acc_owner);
         acc_number = acc_num;
     }
 
-    public ArrayList<String> getHolderName() { //changed to arraylist to show all account holders
-        return holders; //returns all holder names not just the first one
+    public ArrayList<String> getHolderName() {
+        return holders;
     }
 
     public int getID() {
@@ -111,25 +111,6 @@ public class BaseAccount implements Account {
         loanAmount = loan;
     }
 
-    public double payInterest() {
-        double charge;
-        if (balance >= 0) {
-            charge = interestRate * balance; //if balance is positive, add interest
-        } else {
-            charge = 0.05 * balance; //if account is in overdraft, interest charged at 5%
-        }
-        balance += charge;
-        return charge;
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-
-    public void interest_rate() {
-        balance += interestRate * balance;
-    }
 
     public void addTransaction(Date d, String trans_Type, double amount) {
         transactions.add(new Transaction(d, trans_Type, amount));

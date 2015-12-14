@@ -50,11 +50,12 @@
         android:onClick="createStudentLoanButton"
         android:text="ENTER" />
 
-    <TextView
-        android:id="@+id/studentloan_output"
+    <ListView
+        android:id="@+id/studentLoan_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="..." />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 
 </LinearLayout>

@@ -7,7 +7,6 @@ package com.example.faraz_khan.bank2;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -15,7 +14,7 @@ import java.util.TimerTask;
 public class Control {
 
 
-    private static Scanner input = new Scanner(System.in);
+
     private static Control instance;
     private final Timer timer = new Timer();
     int acc_num;
@@ -422,7 +421,7 @@ public class Control {
 
     public String chooseLoanType(int option, String name, int id, final String loanReasons) {
         String loanType = "";
-
+        accNumGenerator++;
         switch (option) {
             case 1:
                 accounts.add(new Loan(name, accNumGenerator, id, loanReasons));
@@ -441,7 +440,7 @@ public class Control {
                 loanType = "Personal";
                 break;
         }
-        accNumGenerator++;
+
         return loanType;
 
     }
@@ -450,14 +449,12 @@ public class Control {
     public List<String> createLoan(String name, int id, int accNum, int option, String loanReasons, int loan) {
         List<String> createLoanList = new ArrayList<>();
         int counter = 0;
-        double debit = 0;
-        final Penalty penalty = new Penalty();
 
 
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == accNum) {
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == accNum) {
                 counter++;
-                if ("Loan".equals(accounts.get(i).get_acc_type())) {
+                if ("Loan".equals(account.get_acc_type())) {
                     createLoanList.add("Funds must be paid into a bank account.");
 
                 } else {
@@ -465,29 +462,32 @@ public class Control {
 
                     if (loan > 0 && loan <= 100000) {
 
-                        chooseLoanType(option, name, id, loanReasons);
-                        accounts.get(accNumGenerator).setLoanAmount(loan);
-                        createLoanList.add("Your loan account number is " + accNumGenerator);
-                        accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
+                        String loanType = chooseLoanType(option, name, id, loanReasons);
+                        accounts.get(accNumGenerator - 1).setLoanAmount(loan);
+                        createLoanList.add("Your " + loanType + " Loan Has Been Approved ");
+                        createLoanList.add("Your loan account number is " + (accNumGenerator));
+                        accounts.get(accNumGenerator - 1).addLoanTransaction(new Date(), "New Loan",
                                 loan, "");
-                        accounts.get(accNumGenerator).withdraw(loan);
-                        accounts.get(i).deposit(loan);
-                        accounts.get(i).addTransaction(new Date(), "Loan", amount);
+                        accounts.get(accNumGenerator - 1).withdraw(loan);
+                        account.deposit(loan);
+                        account.addTransaction(new Date(), "Loan", amount);
                     } else {
                         createLoanList.add("Please choose a value above zero up to �100,000");
                     }
+
                 }
             }
         }
-        if (counter == 0) { //if no valid account was found
+        if (counter == 0) {
             createLoanList.add("Account number not recognised.");
 
         }
         return createLoanList;
-        }
+    }
 
 
-    public void viewLoan(int accNum) {
+    public List<String> viewLoan(int accNum) {
+        List<String> viewLoanList = new ArrayList<>();
         int counter = 0;
         System.out.println("Enter Account Number:");
 
@@ -496,18 +496,23 @@ public class Control {
             if (account.getAccountNum() == accNum) {
                 counter++;
                 if ("Loan".equals(account.get_acc_type())) {
+                    viewLoanList.add("Loan Amount: " + account.getLoanAmount());
+                    viewLoanList.add("Amount Due: " + account.get_balance());
+                    viewLoanList.add("Monthly Payment: " + (account.get_balance() / 36) + "Pounds For 36 Months");
+                    viewLoanList.add("Name: " + account.getHolderName());
                     while (h < account.getLoanPayments().size()) {
                         System.out.println(account.getLoanPayments().get(h).getLoanType() + " " + account.getLoanPayments().get(h).getLoanDate() + " " + account.getLoanPayments().get(h).getLoanAmount());
                         h++;
                     }
                 } else {
-                    System.out.println("Please enter a Loan account number.");
+                    viewLoanList.add("Please enter a Loan account number.");
                 }
             }
         }
         if (counter == 0) {
-            System.out.println("Account number not recognised.");
+            viewLoanList.add("Account number not recognised.");
         }
+        return viewLoanList;
     }
 }
 

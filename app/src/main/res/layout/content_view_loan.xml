@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -12,4 +13,23 @@
     tools:context=".ViewLoan"
     tools:showIn="@layout/activity_view_loan">
 
-</RelativeLayout>
+    <EditText
+        android:id="@+id/accnum_viewloan"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:hint="Enter Loan Account Number" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:onClick="ViewLoanButton"
+        android:text="ENTER" />
+
+    <ListView
+        android:id="@+id/viewLoan_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

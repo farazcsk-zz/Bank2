@@ -6,13 +6,18 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateBusinessLoan extends AppCompatActivity {
     public int acc_num;
-    public int accNumGenerator;
-    public int amount;
+
+    public int loan;
     public String name;
     Control ctrl;
 
@@ -47,28 +52,23 @@ public class CreateBusinessLoan extends AppCompatActivity {
         EditText accNumText = (EditText) findViewById(R.id.accnum_businessloan);
         acc_num = Integer.parseInt(accNumText.getText().toString());
         EditText amountText = (EditText) findViewById(R.id.amount_businessloan);
-        amount = Integer.parseInt(amountText.getText().toString());
+        loan = Integer.parseInt(amountText.getText().toString());
 
 
-        ctrl.createLoan(name, id, acc_num, 2, "Business Loan", amount);
+
         //accounts.add(new BusinessAccount(name, acc_num, id));
+        List<String> CreateBusinessLoanList = new ArrayList<>();
+        CreateBusinessLoanList = ctrl.createLoan(name, id, acc_num, 2, "Business Loan", loan);
 
-        TextView output = (TextView) findViewById(R.id.businessloan_output);
-        output.setText(createSummary(name, acc_num, amount));
+        ListAdapter CreateStandardLoanAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, CreateBusinessLoanList);
+        ListView CreateBusinessLoanListView = (ListView) findViewById(R.id.businessLoan_listview);
+
+        CreateBusinessLoanListView.setAdapter(CreateStandardLoanAdapter);
+
+
 
 
     }
 
-    public String createSummary(String name, int acc_num, double amount) {
-
-        String message = "Your business Loan: ";
-        message += "\nName: " + name;
-        message += "\nAccount Number: " + acc_num;
-        message += "\nAmount: " + amount;
-        message += "\nHas Successfully Been Approved!";
-
-
-        return message;
-    }
 
 }

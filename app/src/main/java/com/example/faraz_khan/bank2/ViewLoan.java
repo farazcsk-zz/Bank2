@@ -6,8 +6,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ViewLoan extends AppCompatActivity {
+    public int acc_num;
+    Control ctrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,5 +34,24 @@ public class ViewLoan extends AppCompatActivity {
             }
         });
     }
+
+    public void ViewLoanButton(View view) {
+        ctrl = Control.getInstance();
+
+        EditText accNumText = (EditText) findViewById(R.id.accnum_viewloan);
+        acc_num = Integer.parseInt(accNumText.getText().toString());
+
+
+        List<String> ViewLoanList = new ArrayList<>();
+        ViewLoanList = ctrl.viewLoan(acc_num);
+
+        ListAdapter ViewLoanAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ViewLoanList);
+        ListView ViewLoanListView = (ListView) findViewById(R.id.viewLoan_listview);
+
+        ViewLoanListView.setAdapter(ViewLoanAdapter);
+
+
+    }
+
 
 }

@@ -50,11 +50,12 @@
         android:onClick="createBusinessLoanButton"
         android:text="ENTER" />
 
-    <TextView
-        android:id="@+id/businessloan_output"
+    <ListView
+        android:id="@+id/businessLoan_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="..." />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 
 </LinearLayout>
