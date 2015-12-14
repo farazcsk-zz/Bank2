@@ -19,7 +19,6 @@ public class Control {
     private static Control instance;
     private final Timer timer = new Timer();
     int acc_num;
-    int acc_number;
     int accNumGenerator;
     double amount;
     String name;
@@ -31,22 +30,20 @@ public class Control {
         final Interest interest = new Interest();
 
 
-        /***4. Interest payments***/
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 for (int i = 0; i < accounts.size(); i++) {
                     double charge = accounts.get(i).accept(interest);
-                    //interest visit
+
 
                     accounts.get(i).addTransaction(new Date(), "Interest", (charge));
                 }
-                //System.out.println("Interest has been paid.");
+
             }
         }, 30000, 30000);
 
 
-//singleton
     }
 
     public static Control getInstance() {
@@ -63,385 +60,437 @@ public class Control {
     }
 
 
-    public void createAccount(int option2, String name, int acc_num, int id, String loanReasons) {
+    public List<String> createAccount(int option2, String name, int id, String loanReasons) {
 
         accNumGenerator++;
+        List<String> createAccountOutput = new ArrayList<>();
         switch (option2) {
             case 1:
                 accounts.add(new CurrentAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Current Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
                 break;
             case 2:
                 accounts.add(new SavingsAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Savings Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created! ");
                 break;
             case 3:
                 accounts.add(new StudentAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Student Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
                 break;
             case 4:
                 accounts.add(new BusinessAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Business Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
                 break;
             case 5:
                 accounts.add(new SMBAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your SMB Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created! ");
                 break;
             case 6:
                 accounts.add(new IRAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your IRA Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created! ");
                 break;
             case 7:
                 accounts.add(new HighInterestAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your High Interest Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
                 break;
             case 8:
                 accounts.add(new IslamicAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Current Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created! ");
                 break;
             case 9:
                 accounts.add(new PrivateAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Private Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
                 break;
             case 10:
                 accounts.add(new LCRAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your LCR Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
+                break;
+            case 11:
+                accounts.add(new InternationalAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your International Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
+                break;
+            case 12:
+                accounts.add(new DisabilityAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Disability Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created!");
+                break;
+            case 13:
+                accounts.add(new ChildrensAccount(name, accNumGenerator, id, loanReasons));
+                createAccountOutput.add("Your Childrens Account: ");
+                createAccountOutput.add("Name: " + name);
+                createAccountOutput.add("Account Number: " + accNumGenerator);
+                createAccountOutput.add("ID: " + id);
+                createAccountOutput.add("Has Successfully Been Created! ");
                 break;
         }
 
-
+        return createAccountOutput;
     }
 
 
-    public void deposit(int acc_number, double amount) {
-        //Write the instruction to the user
-        //System.out.println("Enter account Number: ");
-//Convert the string the user enters to an int
-        //  acc_num = Integer.parseInt(input.nextLine());
-        //Write instruction to the user
-        //System.out.println("Enter deposit amount: ");
-//Convert the string entered by the user to a double
-        // amount = Double.parseDouble(input.nextLine());
-
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
-                System.out.println(acc_number);
-
-                accounts.get(i).deposit(amount);
-                accounts.get(i).addTransaction(new Date(), "Deposit", amount);
-                System.out.println(amount);
-            }
-        }
-    }
-
-
-    public double displayBalance(int acc_number) {
-        //Write the instruction to the user
-        //System.out.println("Enter account Number: ");
-//Convert the string the user enters to an int
-        //acc_number = Integer.parseInt(input.nextLine());
-
-
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
-                amount = accounts.get(i).get_balance();
-                accounts.get(i).addTransaction(new Date(), "View Balance", amount);
-
-
-            }
-        }
-
-        return amount;
-    }
-
-
-    public double withdraw(int acc_number, double amount) {
-        //Write the instruction to the user
-        System.out.println("Enter account Number: ");
-//Convert the string the user enters to an int
-        //acc_number = Integer.parseInt(input.nextLine());
-        //Write instruction to the user
-        System.out.println("Enter deposit amount: ");
-//Convert the string entered by the user to a double
-        //amount = Double.parseDouble(input.nextLine());
-
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
-                if (accounts.get(i).get_acc_type() == "Current") {
-                    if (amount <= 500) {
-                        accounts.get(i).withdraw(amount);
-                        accounts.get(i).addTransaction(new Date(), "Withdraw", amount);
-
-                    } else {
-                        System.out.println("The maximum daily withdrawal for a Current account is ?500. This transaction has been cancelled");
-
-
-                    }
-                } else if (accounts.get(i).get_acc_type() == "Savings") {
-                    if (amount <= 300) {
-                        accounts.get(i).withdraw(amount);
-                        accounts.get(i).addTransaction(new Date(), "Withdraw", amount);
-
-                    } else {
-                        System.out.println("The maximum daily withdrawal for a Savings account is ?300. This transaction has been cancelled");
-
-                    }
-                } else if (accounts.get(i).get_acc_type() == "Business") {
-                    if (amount <= 500) {
-                        accounts.get(i).withdraw(amount);
-                        accounts.get(i).addTransaction(new Date(), "Withdraw", amount);
-
-                    } else {
-                        System.out.println("The maximum daily withdrawal for a Business account is ?500. This transaction has been cancelled");
-
-                    }
-                }
-
-
-            }
-        }
-        return amount;
-    }
-
-
-    public void transferMoney(int acc_number, double amount, int acc_number2) {              //Write the instruction to the user
-        //System.out.println("Enter account Number to transfer money FROM:");
-        //Convert the string the user enters to an int
-        // acc_number = Integer.parseInt(input.nextLine());
-        //Write instruction to the user
-        //System.out.println("Enter transfer amount: ");
-//Convert the string entered by the user to a double
-        // amount = Double.parseDouble(input.nextLine());
-        CareTaker careTaker = new CareTaker();
+    public List<String> deposit(int acc_number, double amount) {
+        List<String> depositOutput = new ArrayList<>();
         int counter = 0;
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
+
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
+                counter++;
+                account.deposit(amount);
+                depositOutput.add("Your Deopsit of: ");
+                depositOutput.add("Amount: " + amount);
+                depositOutput.add("To Account Number: " + acc_number);
+                depositOutput.add("Has Been Successful!");
+            }
+            if ("Loan".equals(account.get_acc_type())) {
+                account.addLoanTransaction(new Date(), "Loan Payment", amount, "");
+                depositOutput.add("You have �" + -(account.getBalance()) + " of your loan still to pay off.");
+            } else {
+                account.addTransaction(new Date(), "Deposit", amount);
+            }
+            if (counter == 0) {
+                depositOutput.add("Account number not recognised.");
+                depositOutput.add("Please Try Again.");
+
+            }
+
+        }
+        return depositOutput;
+    }
+
+
+    public List<String> displayBalance(int acc_number) {
+        List<String> displayBalanceOutput = new ArrayList<>();
+        int counter = 0;
+
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
+                counter++;
+                amount = account.get_balance();
+                account.addTransaction(new Date(), "View Balance", amount);
+                displayBalanceOutput.add("Your Current Balance is: ");
+                displayBalanceOutput.add("Amount: " + amount);
+                displayBalanceOutput.add("Your available balance is : " + (amount + account.getOverdraft()));
+                displayBalanceOutput.add("Account Number: " + acc_number);
+
+
+            }
+            if (counter == 0) {
+                displayBalanceOutput.add("Account number not recognised.");
+                displayBalanceOutput.add("Please Try Again.");
+
+            }
+
+        }
+
+        return displayBalanceOutput;
+    }
+
+
+    public List<String> withdraw(int acc_number, double amount) {
+        List<String> withdrawOutput = new ArrayList<>();
+        int counter = 0;
+
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
                 counter++;
 
-                if (accounts.get(i).get_balance() >= amount) {
-                    careTaker.add(accounts.get(i).saveMemento());
-                    accounts.get(i).withdraw(amount);
-                    accounts.get(i).addTransaction(new Date(), "Transfer", amount);
+                if ((account.getBalance() + account.getOverdraft()) < amount) {
+
+                    withdrawOutput.add("Insufficient funds. This transaction has been cancelled.");
+
+                } else if (account.getWithdrawLimit() >= amount) {
+
+                    account.withdraw(amount);
+                    account.addTransaction(new Date(), "Withdraw", amount);
+                    withdrawOutput.add("You Have Successfully Withdrawn: ");
+                    withdrawOutput.add("Amount: " + amount);
+                    withdrawOutput.add("New Balance: " + account.getBalance());
+                    withdrawOutput.add("You Have Successfully Withdrawn: ");
+
+                } else {
+                    withdrawOutput.add("The maximum withdrawal for a " + account.get_acc_type() + "account is �" + account.getWithdrawLimit() + ". This transaction has been cancelled.");
+
+                }
+            }
+        }
+        if (counter == 0) {
+            withdrawOutput.add("Account number not recognised.");
+        }
+
+
+        return withdrawOutput;
+    }
+
+
+    public List<String> transferMoney(int acc_number, double amount, int acc_number2) {
+        List<String> transferMoneyOutput = new ArrayList<>();
+        CareTaker careTaker = new CareTaker();
+
+        int counter = 0;
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
+                counter++;
+
+                if (account.get_balance() >= amount) {
+                    careTaker.add(account.saveMemento());
+                    account.withdraw(amount);
+                    account.addTransaction(new Date(), "Transfer", amount);
 
                 } else {
 
-                    System.out.println("There are insufficient funds to make this transfer");
-                    accounts.get(i).getStateFromMemento(careTaker.get(0));
+                    transferMoneyOutput.add("There are insufficient funds to make this transfer");
+
 
                 }
-            } else if (counter == 0) { //if no valid account was found
-                System.out.println("Account number not recognised.");
-                accounts.get(i).getStateFromMemento(careTaker.get(0));
+            } else if (counter == 0) {
+                transferMoneyOutput.add("Account number not recognised.");
+
             }
-        }
 
 
-        System.out.println("Enter account Number to transfer money TO: ");
-        //Convert the string the user enters to an int
-        //  acc_number2 = Integer.parseInt(input.nextLine());
-        int counterTwo = 0;
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number2) {
-                counterTwo++;
-                accounts.get(i).deposit(amount);
-                accounts.get(i).addTransaction(new Date(), "Transfer", amount);
+            int counterTwo = 0;
+            for (int j = 0; j < accounts.size(); j++) {
+                if (accounts.get(j).getAccountNum() == acc_number2) {
+                    counterTwo++;
+                    accounts.get(j).deposit(amount);
+                    accounts.get(j).addTransaction(new Date(), "Transfer", amount);
 
-            } else if (counterTwo == 0) { //if no valid account was found
-                System.out.println("Account number not recognised. No funds weretransferred.");
-                //accounts.get(acc_number).deposit(amount); //put funds back in first account /***2.rollback feature***/
-                accounts.get(i).getStateFromMemento(careTaker.get(0));
+                }
+
             }
+            if (counterTwo == 0) {
+                account.getStateFromMemento(careTaker.get(0));
+                transferMoneyOutput.add("Account number not recognised. No funds were transferred.");
+                transferMoneyOutput.add("Your Funds Remain Intact Your Current Balance Is Still: " + account.get_balance());
+                account.addTransaction(new Date(), "Transfer Unsucessful", amount);
+
+
+            }
+
+
         }
+        transferMoneyOutput.add("Payment has been successfully transferred: ");
+        transferMoneyOutput.add("Amount: " + amount);
+        transferMoneyOutput.add("From Account Number: " + acc_number);
+        transferMoneyOutput.add("To Account Number: " + acc_number2);
 
-        System.out.println("Payment has been successfully transferred");
 
-
+        return transferMoneyOutput;
     }
 
 
-    public void payInterest() {
+    public List<String> addAccountHolder(int acc_number, String name) {
+        int counter = 0;
+        List<String> addAccountHolderList = new ArrayList<>();
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
+                counter++;
+                account.AddAccHolder(name, acc_number);
+                addAccountHolderList.add("A New Account Holder Has Been Sucessfully Added: ");
+                addAccountHolderList.add("Name: " + name);
+                addAccountHolderList.add("Account Number: " + acc_number);
 
-
-    }
-
-
-    public void addAccountHolder(int acc_number, String name) {
-        System.out.println("Enter Account Number");
-        acc_number = Integer.parseInt(input.nextLine());
-        System.out.println("Enter Customer first and Last Name");
-        name = input.nextLine();
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
-                accounts.get(i).AddAccHolder(name, acc_num);
                 break;
             }
         }
+        if (counter == 0) {
+            addAccountHolderList.add("Account number not recognised.");
+        }
 
-
+        return addAccountHolderList;
     }
 
 
-    public void showAccounts(int acc_number) {
-        System.out.println("Enter Account Number");
-        int _id = Integer.parseInt(input.nextLine());
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getID() == acc_number) {
-                System.out.println(accounts.get(i).get_acc_type() + " " + accounts.get(i).getHolderName() + " " + accounts.get(i).get_balance());
+    public List<String> showAccounts(int _id) {
+        int counter = 0;
+        List<String> accountsList = new ArrayList<>();
+        for (BaseAccount account : accounts) {
+            if (account.getID() == _id) {
+                counter++;
+                accountsList.add(account.get_acc_type() + " " + account.getHolderName() + " " + account.get_balance());
 
             }
+            if (counter == 0) {
+                accountsList.add("Account number not recognised.");
+            }
         }
+        return accountsList;
 
 
     }
 
 
     public List<String> showTransactions(int acc_number) {
-        // System.out.println("Enter Account Number");
-        // acc_num = Integer.parseInt(input.nextLine())
+        int counter = 0;
         List<String> transactionList = new ArrayList<>();
         int j = 0;
 
-        for (int i = 0; i < accounts.size(); i++) {
-            if (accounts.get(i).getAccountNum() == acc_number) {
-                while (j < accounts.get(i).getTransactions().size()) {
+        for (BaseAccount account : accounts) {
+            if (account.getAccountNum() == acc_number) {
+                counter++;
+                while (j < account.getTransactions().size()) {
 
 
-                    transactionList.add(accounts.get(i).getTransactions().get(j).getType() + " " + accounts.get(i).getTransactions().get(j).getDate() + " " + accounts.get(i).getTransactions().get(j).getAmount());
+                    transactionList.add(account.getTransactions().get(j).getType() + " " + account.getTransactions().get(j).getDate() + " " + account.getTransactions().get(j).getAmount());
 
                     j++;
                 }
 
             }
         }
+        if (counter == 0) {
+            transactionList.add("Account number not recognised.");
+        }
+
         return transactionList;
 
     }
 
-    public void changeOverdraft(int accNum, int counter) {
-        System.out.println("Enter Account Number:");
-        accNum = Integer.parseInt(input.nextLine());
+    public List<String> changeOverdraft(int accNum, int limit) {
+        List<String> changeOverdraftList = new ArrayList<>();
+        int counter = 0;
+
         for (BaseAccount account : accounts) {
             if (account.getAccountNum() == accNum) {
                 counter++;
-                System.out.println("The current overdraft limit is �" + account.getOverdraft());
-                System.out.println("The maximum allowed overdraft limit is �" + account.getOverdraftLimit());
-                System.out.println("Enter new overdraft limit:");
-                int limit = Integer.parseInt(input.nextLine());
+
                 if (limit <= account.getOverdraftLimit()) {
                     account.changeOverdraft(limit);
                     account.addTransaction(new Date(), "New Overdraft Limit Set", limit);
+                    changeOverdraftList.add("The new overdraft limit is :" + account.getOverdraft());
+                    changeOverdraftList.add("The maximum allowed overdraft limit is :" + account.getOverdraftLimit());
                 } else {
-                    System.out.println("Please enter a value between 0 and " +
+                    changeOverdraftList.add("This Exceeds The Maximum Overdraft Limit Please enter a value between 0 and " +
                             account.getOverdraftLimit());
                 }
             }
         }
-        if (counter == 0) { //if no valid account was found
-            System.out.println("Account number not recognised.");
+        if (counter == 0) {
+            changeOverdraftList.add("Account number not recognised.");
         }
+
+        return changeOverdraftList;
 
     }
 
-    public void chooseLoanType(int option, String name, int acc_num, int id, String loanReasons) {
+    public String chooseLoanType(int option, String name, int id, final String loanReasons) {
+        String loanType = "";
+
         switch (option) {
             case 1:
-                accounts.add(new Loan(name, acc_num, id, loanReasons));
+                accounts.add(new Loan(name, accNumGenerator, id, loanReasons));
+                loanType = "Standard";
                 break;
             case 2:
-                accounts.add(new BusinessLoan(name, acc_num, id, loanReasons));
+                accounts.add(new BusinessLoan(name, accNumGenerator, id, loanReasons));
+                loanType = "Business";
                 break;
             case 3:
-                accounts.add(new StudentLoan(name, acc_num, id, loanReasons));
+                accounts.add(new StudentLoan(name, accNumGenerator, id, loanReasons));
+                loanType = "Student";
                 break;
             case 4:
-                accounts.add(new PersonalLoan(name, acc_num, id, loanReasons));
+                accounts.add(new PersonalLoan(name, accNumGenerator, id, loanReasons));
+                loanType = "Personal";
                 break;
         }
+        accNumGenerator++;
+        return loanType;
 
     }
 
 
-    public void createLoan(String name, int id, int accNum, int option, String loanReasons) {
+    public List<String> createLoan(String name, int id, int accNum, int option, String loanReasons, int loan) {
+        List<String> createLoanList = new ArrayList<>();
         int counter = 0;
+        double debit = 0;
         final Penalty penalty = new Penalty();
-        System.out.println("Enter customer's first and last name:");
-        // name = input.nextLine();
-        System.out.println("Enter Customer ID:");
-        // id = Integer.parseInt(input.nextLine());
-        System.out.println("Enter account number for funds to be paid into:");
-        accNum = Integer.parseInt(input.nextLine());
+
+
         for (int i = 0; i < accounts.size(); i++) {
             if (accounts.get(i).getAccountNum() == accNum) {
                 counter++;
                 if ("Loan".equals(accounts.get(i).get_acc_type())) {
-                    System.out.println("Funds must be paid into a bank account.");
+                    createLoanList.add("Funds must be paid into a bank account.");
 
                 } else {
-                    System.out.println("Enter loan amount:");
-                    int loan = Integer.parseInt(input.nextLine());
-                    if (option == 3) {
-                        System.out.println("Enter loan amount:");
-                        //int loan = Integer.parseInt(input.nextLine());
-                        if (loan > 0 && loan <= 25000) {
-                            accNumGenerator++;
-                            //accounts.add(new Loan(name, accNumGenerator, id));
-                            chooseLoanType(option, name, accNumGenerator, id, loanReasons);
-                            accounts.get(accNumGenerator).setLoanAmount(loan);
-                            System.out.println("Your loan account number is " + accNumGenerator);
-                            accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
-                                    loan, loanReasons);
-                            accounts.get(accNumGenerator).withdraw(loan);
-                            accounts.get(i).deposit(loan);
-                            accounts.get(i).addTransaction(new Date(), "Loan", amount);
-                            timer.schedule(new TimerTask() {
-                                @Override
-                                public void run() {
-                                    for (int i = 0; i < accounts.size(); i++) {
-                                        double charge = accounts.get(i).accept(penalty);
-                                        //interest visit
-
-                                        accounts.get(i).addTransaction(new Date(), " Student Loan Payment", (charge));
-                                    }
-                                    //System.out.println("Interest has been paid.");
-                                }
-                            }, 30000, 30000);
-
-                        } else if (loan > 25000) {
-                            System.out.println("A Student Loan cannot exceed 25000");
-                        }
 
 
-                    } else if (loan > 0 && loan <= 100000) {
-                        accNumGenerator++;
-                        //accounts.add(new Loan(name, accNumGenerator, id));
-                        chooseLoanType(option, name, accNumGenerator, id, loanReasons);
+                    if (loan > 0 && loan <= 100000) {
+
+                        chooseLoanType(option, name, id, loanReasons);
                         accounts.get(accNumGenerator).setLoanAmount(loan);
-                        System.out.println("Your loan account number is " + accNumGenerator);
+                        createLoanList.add("Your loan account number is " + accNumGenerator);
                         accounts.get(accNumGenerator).addLoanTransaction(new Date(), "New Loan",
-                                loan, loanReasons);
+                                loan, "");
                         accounts.get(accNumGenerator).withdraw(loan);
                         accounts.get(i).deposit(loan);
                         accounts.get(i).addTransaction(new Date(), "Loan", amount);
-                        timer.schedule(new TimerTask() {
-                            @Override
-                            public void run() {
-                                for (int i = 0; i < accounts.size(); i++) {
-
-                                    double charge = accounts.get(i).accept(penalty);
-                                    //interest visit
-
-                                    accounts.get(i).addTransaction(new Date(), "Loan Payment", (charge));
-                                }
-                                //System.out.println("Interest has been paid.");
-                            }
-                        }, 30000, 30000);
-
                     } else {
-                        System.out.println("Please choose a value above zero up to �100,000");
+                        createLoanList.add("Please choose a value above zero up to �100,000");
                     }
-
                 }
             }
-            if (counter == 0) { //if no valid account was found
-                System.out.println("Account number not recognised.");
-
-            }
         }
-    }
+        if (counter == 0) { //if no valid account was found
+            createLoanList.add("Account number not recognised.");
 
-    public void viewLoanPaymentHistory(int accNum, int counter) {
+        }
+        return createLoanList;
+        }
+
+
+    public void viewLoan(int accNum) {
+        int counter = 0;
         System.out.println("Enter Account Number:");
-        // accNum = Integer.parseInt(input.nextLine());
+
         int h = 0;
         for (BaseAccount account : accounts) {
             if (account.getAccountNum() == accNum) {
@@ -456,7 +505,7 @@ public class Control {
                 }
             }
         }
-        if (counter == 0) { //if no valid account was found
+        if (counter == 0) {
             System.out.println("Account number not recognised.");
         }
     }

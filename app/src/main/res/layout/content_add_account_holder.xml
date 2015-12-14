@@ -14,11 +14,13 @@
     tools:showIn="@layout/activity_add_account_holder">
 
     <EditText
+        android:id="@+id/add_account_holder_accountNumber"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Account Number" />
 
     <EditText
+        android:id="@+id/add_account_holder_name"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:hint="Enter Customer First Name And Surname" />
@@ -26,6 +28,14 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="aAccountHolder"
         android:text="ENTER" />
+
+    <ListView
+        android:id="@+id/addAccountHolder_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

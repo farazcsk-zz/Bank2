@@ -15,13 +15,22 @@
 
 
     <EditText
+        android:id="@+id/showAccounts_id"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:hint="Enter Account Number" />
+        android:hint="Enter Customer ID" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:onClick="showAccounts"
         android:text="ENTER" />
+
+    <ListView
+        android:id="@+id/showAccounts_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

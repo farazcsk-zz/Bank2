@@ -6,12 +6,17 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DisplayBalance extends AppCompatActivity {
     int acc_number;
-    double balance;
+
     Control ctrl;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,22 +42,18 @@ public class DisplayBalance extends AppCompatActivity {
 
 
         acc_number = Integer.parseInt(account_number.getText().toString());
-        balance = ctrl.displayBalance(acc_number);
 
 
-        TextView output = (TextView) findViewById(R.id.display_balance_output);
-        output.setText(createSummary(acc_number, balance));
+        List<String> DisplayBalanceList = new ArrayList<>();
+        DisplayBalanceList = ctrl.displayBalance(acc_number);
+
+        ListAdapter displayBalanceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, DisplayBalanceList);
+        ListView DisplayBalanceListView = (ListView) findViewById(R.id.displayBalance_listview);
+
+        DisplayBalanceListView.setAdapter(displayBalanceAdapter);
 
 
     }
 
-    public String createSummary(int acc_number, double balance) {
-        String message = "Your Current Balance is: ";
-        message += "\nAmount: " + balance;
-        message += "\nAccount Number: " + acc_number;
-
-
-        return message;
-    }
 
 }

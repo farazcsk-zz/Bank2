@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.faraz_khan.bank2.ViewLoanHistory"
-    tools:showIn="@layout/activity_view_loan_history">
+    tools:context=".ViewLoan"
+    tools:showIn="@layout/activity_view_loan">
 
 </RelativeLayout>

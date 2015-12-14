@@ -6,8 +6,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreatePrivateAccount extends AppCompatActivity {
     public int acc_num;
@@ -44,28 +49,18 @@ public class CreatePrivateAccount extends AppCompatActivity {
 
         EditText idtext = (EditText) findViewById(R.id.ID_7);
         int id = Integer.parseInt(idtext.getText().toString());
-        accNumGenerator++;
-        acc_num++;
-
-        ctrl.createAccount(8, name, acc_num, id, "");
 
 
-        TextView output = (TextView) findViewById(R.id.private_account_output);
-        output.setText(createSummary(name, acc_num, id));
+        List<String> createPrivateAccountList = new ArrayList<>();
+        createPrivateAccountList = ctrl.createAccount(9, name, id, "");
+
+        ListAdapter cPrivateAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, createPrivateAccountList);
+        ListView createPrivateAccountListView = (ListView) findViewById(R.id.privateAccount_listview);
+
+        createPrivateAccountListView.setAdapter(cPrivateAdapter);
 
 
     }
 
-    public String createSummary(String name, int acc_num, int id) {
-
-        String message = "Your Private Account: ";
-        message += "\nName: " + name;
-        message += "\nAccount Number: " + acc_num;
-        message += "\nID: " + id;
-        message += "\nHas Successfully Been Created!";
-
-
-        return message;
-    }
 
 }

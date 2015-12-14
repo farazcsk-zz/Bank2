@@ -37,10 +37,11 @@
         android:onClick="transferButton"
         android:text="ENTER" />
 
-    <TextView
-        android:id="@+id/transfer_money_output"
+    <ListView
+        android:id="@+id/transferMoney_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="..." />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

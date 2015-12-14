@@ -38,7 +38,7 @@ public class CreateLoan extends AppCompatActivity {
     }
 
     public void createStudentLoan(View view) {
-        Intent CreateStudentAccount = new Intent(this, com.example.faraz_khan.bank2.CreateStudentAccount.class);
+        Intent CreateStudentAccount = new Intent(this, com.example.faraz_khan.bank2.CreateStudentLoan.class);
         startActivity(CreateStudentAccount);
     }
 

@@ -10,11 +10,11 @@ class Penalty implements Visitors {
 
     @Override
     public double visit(BaseAccount account) {
-        if (account.getLoanAmount() == 0) {
+        if (account.get_balance() == 0) {
             return account.get_balance();
         } else {
 
-            account.withdraw(account.getLoanAmount() / 36 * 0.5); // 3 year loan 5% interest
+            account.withdraw(account.get_balance() / 36 * 0.5); // 3 year loan 5% interest
             return account.get_balance();
         }
 }

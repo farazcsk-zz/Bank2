@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class CreatePersonalLoan extends AppCompatActivity {
     public int acc_num;
     public int accNumGenerator;
-    public double amount;
+    public int amount;
     public String name;
     public String reason;
     Control ctrl;
@@ -51,10 +51,10 @@ public class CreatePersonalLoan extends AppCompatActivity {
         EditText accNumText = (EditText) findViewById(R.id.accnum_personalloan);
         acc_num = Integer.parseInt(accNumText.getText().toString());
         EditText amountText = (EditText) findViewById(R.id.amount_studentloan);
-        amount = Double.parseDouble(amountText.getText().toString());
+        amount = Integer.parseInt(amountText.getText().toString());
 
 
-        ctrl.createLoan(name, id, acc_num, 4, reason);
+        ctrl.createLoan(name, id, acc_num, 4, reason, amount);
         //accounts.add(new BusinessAccount(name, acc_num, id));
 
         TextView output = (TextView) findViewById(R.id.personalloan_output);

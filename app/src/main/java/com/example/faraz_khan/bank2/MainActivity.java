@@ -126,8 +126,8 @@ public class MainActivity extends AppCompatActivity
             startActivity(CreateLoan);
 
         } else if (id == R.id.view_loan_history) {
-            Intent ViewLoanHistory = new Intent(this, com.example.faraz_khan.bank2.ViewLoanHistory.class);
-            startActivity(ViewLoanHistory);
+            Intent ViewLoan = new Intent(this, ViewLoan.class);
+            startActivity(ViewLoan);
 
         }
 

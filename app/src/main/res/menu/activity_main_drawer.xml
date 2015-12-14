@@ -53,7 +53,7 @@
             <item
                 android:id="@+id/view_loan_history"
                 android:icon="@android:drawable/ic_menu_send"
-                android:title="View Loan Hisotry" />
+                android:title="View Loan" />
         </menu>
     </item>
 

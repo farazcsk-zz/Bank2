@@ -103,7 +103,7 @@
             android:label="@string/title_activity_create_loan"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ViewLoanHistory"
+            android:name=".ViewLoan"
             android:label="@string/title_activity_view_loan_history"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

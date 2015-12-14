@@ -6,14 +6,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CreateSavingsAccount extends AppCompatActivity {
-    public int acc_num;
-    public int accNumGenerator;
+
     public double amount;
     public String name;
     public ArrayList<BaseAccount> accounts = new ArrayList<BaseAccount>();
@@ -52,27 +54,19 @@ public class CreateSavingsAccount extends AppCompatActivity {
 
         EditText idtext = (EditText) findViewById(R.id.ID_1);
         int id = Integer.parseInt(idtext.getText().toString());
-        accNumGenerator++;
-        acc_num++;
 
-        ctrl.createAccount(2, name, acc_num, id, "");
+
         // accounts.add(new SavingsAccount(name, acc_num, id));
+        List<String> createSavingsAccountList = new ArrayList<>();
+        createSavingsAccountList = ctrl.createAccount(2, name, id, "");
 
-        TextView output = (TextView) findViewById(R.id.savings_account_output);
-        output.setText(createSummary(name, acc_num, id));
+        ListAdapter cSAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, createSavingsAccountList);
+        ListView createSavingsAccountListView = (ListView) findViewById(R.id.createSavingsAccount_listview);
+
+        createSavingsAccountListView.setAdapter(cSAdapter);
 
 
     }
 
-    public String createSummary(String name, int acc_num, int id) {
-        String message = "Your Savings Account: ";
-        message += "\nName: " + name;
-        message += "\nAccount Number: " + acc_num;
-        message += "\nID: " + id;
-        message += "\nHas Successfully Been Created!";
-
-
-        return message;
-    }
 
 }

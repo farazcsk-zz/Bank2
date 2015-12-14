@@ -6,8 +6,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class TransferMoney extends AppCompatActivity {
     int acc_number;
@@ -26,7 +31,7 @@ public class TransferMoney extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                Snackbar.make(view, "Press Back To Return To Menu", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
             }
         });
@@ -44,23 +49,17 @@ public class TransferMoney extends AppCompatActivity {
         acc_number_2 = Integer.parseInt(account_number_to.getText().toString());
         amount = Double.parseDouble(transfer_amount.getText().toString());
 
-        ctrl.transferMoney(acc_number, amount, acc_number_2);
 
-        TextView output = (TextView) findViewById(R.id.transfer_money_output);
-        output.setText(createSummary(acc_number, amount, acc_number_2));
+        List<String> TransferMoneyList = new ArrayList<>();
+        TransferMoneyList = ctrl.transferMoney(acc_number, amount, acc_number_2);
+
+        ListAdapter TransferMoneyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, TransferMoneyList);
+        ListView TransferMoneyListView = (ListView) findViewById(R.id.transferMoney_listview);
+
+        TransferMoneyListView.setAdapter(TransferMoneyAdapter);
 
 
     }
 
-    public String createSummary(int acc_number, double amount, int acc_number_2) {
-        String message = "Your transfer of: ";
-        message += "\nAmount: " + amount;
-        message += "\nTo Account Number: " + acc_number;
-        message += "\nTo Account Number: " + acc_number_2;
-        message += "\nHas Been Successful!";
-
-
-        return message;
-    }
 
 }

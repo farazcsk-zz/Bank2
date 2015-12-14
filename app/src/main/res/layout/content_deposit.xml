@@ -32,10 +32,11 @@
         android:onClick="depositButton"
         android:text="ENTER" />
 
-    <TextView
-        android:id="@+id/deposit_output"
+    <ListView
+        android:id="@+id/deposit_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="..." />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

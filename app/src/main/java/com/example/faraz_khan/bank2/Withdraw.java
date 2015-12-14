@@ -6,15 +6,20 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Withdraw extends AppCompatActivity {
 
     int acc_number;
     double amount;
-    double requestedamount;
-    double balance;
+
+
     Control ctrl;
 
     @Override
@@ -44,24 +49,17 @@ public class Withdraw extends AppCompatActivity {
         acc_number = Integer.parseInt(account_number.getText().toString());
         amount = Double.parseDouble(withdraw.getText().toString());
 
-        requestedamount = ctrl.withdraw(acc_number, amount);
-        balance = ctrl.displayBalance(acc_number);
+        List<String> WithdrawList = new ArrayList<>();
+        WithdrawList = ctrl.withdraw(acc_number, amount);
 
+        ListAdapter WithdrawAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, WithdrawList);
+        ListView WithdrawListView = (ListView) findViewById(R.id.withdraw_listview);
 
-        TextView output = (TextView) findViewById(R.id.withdraw_output);
-        output.setText(createSummary(acc_number, requestedamount, balance));
+        WithdrawListView.setAdapter(WithdrawAdapter);
 
 
     }
 
-    public String createSummary(int acc_number, double amount, double balance) {
-        String message = "You Have Successfully Withdrawn:: ";
-        message += "\nAmount: " + amount;
-        message += "\nNew Balance" + balance;
-        message += "\nAccount Number: " + acc_number;
 
-
-        return message;
-    }
 
 }

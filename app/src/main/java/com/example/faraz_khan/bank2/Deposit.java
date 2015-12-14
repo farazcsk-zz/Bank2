@@ -6,8 +6,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Deposit extends AppCompatActivity {
 
@@ -44,22 +49,18 @@ public class Deposit extends AppCompatActivity {
         acc_number = Integer.parseInt(account_number.getText().toString());
         amount = Double.parseDouble(deposit_amount.getText().toString());
 
-        ctrl.deposit(acc_number, amount);
 
-        TextView output = (TextView) findViewById(R.id.deposit_output);
-        output.setText(createSummary(acc_number, amount));
+        List<String> DepositList = new ArrayList<>();
+        DepositList = ctrl.deposit(acc_number, amount);
 
+        ListAdapter depositAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, DepositList);
+        ListView DepositListView = (ListView) findViewById(R.id.deposit_listview);
 
-    }
-
-    public String createSummary(int acc_number, double amount) {
-        String message = "Your Deopsit of: ";
-        message += "\nAmount: " + amount;
-        message += "\nTo Account Number: " + acc_number;
-        message += "\nHas Been Successful!";
+        DepositListView.setAdapter(depositAdapter);
 
 
-        return message;
+
+
     }
 
 

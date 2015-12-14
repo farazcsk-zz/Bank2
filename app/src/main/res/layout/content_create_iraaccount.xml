@@ -37,10 +37,11 @@
         android:onClick="cIRAAccount"
         android:text="ENTER" />
 
-    <TextView
-        android:id="@+id/ira_account_output"
+    <ListView
+        android:id="@+id/iraAccount_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="..." />
+        android:layout_height="match_parent">
+
+    </ListView>
 
 </LinearLayout>

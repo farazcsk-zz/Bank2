@@ -6,12 +6,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CreateInternationalAccount extends AppCompatActivity {
-    public int acc_num;
-    public int accNumGenerator;
+
     public double amount;
     public String name;
     Control ctrl;
@@ -45,28 +49,20 @@ public class CreateInternationalAccount extends AppCompatActivity {
 
         EditText idtext = (EditText) findViewById(R.id.ID_6);
         int id = Integer.parseInt(idtext.getText().toString());
-        accNumGenerator++;
-        acc_num++;
-
-        ctrl.createAccount(7, name, acc_num, id, "");
 
 
-        TextView output = (TextView) findViewById(R.id.international_account_output);
-        output.setText(createSummary(name, acc_num, id));
+        List<String> createInternationalAccountList = new ArrayList<>();
+        createInternationalAccountList = ctrl.createAccount(11, name, id, "");
+
+        ListAdapter cInternationalAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, createInternationalAccountList);
+        ListView createInternationalAccountListView = (ListView) findViewById(R.id.internationalAccount_listview);
+
+        createInternationalAccountListView.setAdapter(cInternationalAdapter);
+
+
 
 
     }
 
-    public String createSummary(String name, int acc_num, int id) {
-
-        String message = "Your International Account: ";
-        message += "\nName: " + name;
-        message += "\nAccount Number: " + acc_num;
-        message += "\nID: " + id;
-        message += "\nHas Successfully Been Created!";
-
-
-        return message;
-    }
 
 }
